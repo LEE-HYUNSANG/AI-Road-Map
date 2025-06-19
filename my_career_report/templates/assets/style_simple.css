@@ -1,0 +1,13 @@
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333; }
+h1, h2, h3 { color: #2a5d84; }
+.cover, .section { margin-bottom: 40px; }
+.cover h1 { font-size: 2.8em; margin-bottom: 10px; }
+.section h2 { font-size: 2em; border-bottom: 3px solid #ddd; padding-bottom: 8px; margin-bottom: 25px; }
+.section h3 { font-size: 1.4em; margin-top: 20px; color: #3a6f96; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+th { background-color: #f0f4f8; font-weight: bold; }
+.chart-placeholder { width: 100%; height: 320px; background-color: #fafafa; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-style: italic; color: #999; }
+.action-plan ul { list-style-type: disc; margin-left: 25px; }
+.insight-box { background-color: #eef6fc; border-left: 4px solid #2a5d84; padding: 15px; margin-bottom: 20px; }
+.resource-list ul { margin-left: 20px; }
