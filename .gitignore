@@ -1,0 +1,4 @@
+weasy_env/
+*.pyc
+__pycache__/
+my_career_report/weasy_env/

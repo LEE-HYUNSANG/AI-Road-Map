@@ -1,0 +1,425 @@
+/* File: templates/assets/style.css */
+/* Import preferred Korean web fonts if available */
+@font-face {
+    font-family: 'NanumSquare Neo Bold';
+    font-weight: bold;
+    src: local('NanumSquare Neo Bold');
+}
+@font-face {
+    font-family: 'NanumSquareRound Bold';
+    font-weight: bold;
+    src: local('NanumSquareRound Bold');
+}
+@font-face {
+    font-family: 'NanumSquareRound Regular';
+    font-weight: normal;
+    src: local('NanumSquareRound Regular');
+}
+
+body {
+    font-family: 'NanumSquareRound Regular', 'NanumSquareRound Bold', Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    margin: 30px;
+    color: #333;
+    background-color: #fff;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+th, td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+}
+h1, h2, h3, h4 {
+    text-align: left;
+    color: #1a365d;
+    font-family: 'NanumSquare Neo Bold', sans-serif;
+    font-weight: bold;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+h1 { font-size: 2.2em; }
+h2 { font-size: 1.8em; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5em; }
+h3 { font-size: 1.5em; color: #2d3748; }
+h4 { font-size: 1.2em; color: #4a5568; }
+
+th {
+    background-color: #f7fafc;
+    color: #2d3748;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.chart-container {
+    width: 100%;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.chart-img {
+    display: none;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.chart-canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.report-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.report-section h3 {
+    margin-bottom: 12px;
+}
+
+.report-section table {
+    margin-top: 0;
+}
+
+.report-section h3 {
+    margin-top: 0;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media print {
+    body { 
+        font-size: 10pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+        padding: 0;
+        margin: 0;
+    }
+    .report-section {
+        margin-bottom: 24pt;
+        padding: 0;
+        box-shadow: none;
+    }
+    .report-section h3 {
+        margin-bottom: 8pt;
+    }
+    table { 
+        page-break-inside: avoid;
+        margin: 0 0 16pt 0;
+        border-collapse: collapse;
+    }
+    .chart-canvas { display: none; }
+    .chart-container {
+        margin: 30pt 0;
+        page-break-inside: avoid;
+    }
+    .chart-img { 
+        display: block;
+        margin: 0 auto;
+        width: 85%;
+        height: auto;
+    }
+    h1 { font-size: 24pt; }
+    h2 { font-size: 18pt; margin-top: 20pt; }
+    h3 { font-size: 14pt; margin-top: 16pt; }
+    .report-section {
+        margin-bottom: 16pt;
+        page-break-inside: avoid;
+    }
+    .data-table {
+        border: 1pt solid #000;
+        width: 100%;
+        font-size: 9pt;
+    }
+    .data-table th {
+        background-color: #f0f0f0 !important;
+        color: #000;
+        border: 1pt solid #000;
+        padding: 8pt;
+        text-align: left;
+        font-weight: bold;
+    }
+    .data-table td {
+        padding: 8pt;
+        border: 1pt solid #000;
+        vertical-align: top;
+    }
+    blockquote {
+        margin: 12pt 0;
+        padding: 8pt;
+        background-color: #f8f8f8 !important;
+        border-left: 3pt solid #666;
+    }
+    .footnote {
+        font-size: 9pt;
+        color: #444;
+    }
+}
+
+/* Page layout with header and footer */
+@page {
+    size: A4;
+    margin: 2.5cm 2cm;
+    @top-center {
+        content: "AI 기반 진로 탐색 및 역량 진단 결과 보고서";
+        font-family: 'NanumSquareRound Bold', sans-serif;
+        font-size: 10pt;
+        color: #444;
+        margin-top: 10mm;
+    }
+    @bottom-center {
+        content: counter(page);
+        font-size: 10pt;
+        color: #444;
+        margin-bottom: 10mm;
+    }
+}
+
+@page:first {
+    @top-center { content: normal; }
+    @bottom-center { content: normal; }
+}
+
+.cover-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 40px;
+}
+
+.cover-content {
+    text-align: center;
+}
+
+.cover-info {
+    margin-top: 2em;
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+    font-size: 1.3em;
+}
+
+.user-info, .date-info {
+    padding: 0.5em 1em;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.section-header {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 1.2em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid #eee;
+    font-weight: bold;
+}
+
+.section-header h3 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.data-table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.data-table th {
+    background: #f8fafc;
+}
+
+.data-table tr:hover {
+    background: #f8fafc;
+}
+
+.result-section .data-table td:not(:first-child) {
+    font-family: monospace;
+    font-size: 1.1em;
+}
+
+.insight-section .data-table td {
+    line-height: 1.6;
+}
+
+.profile-section blockquote {
+    background: #f8fafc;
+    border-left: 4px solid #4a5568;
+    margin: 1.5em 0;
+    padding: 1em;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+}
+
+.page-break {
+    page-break-after: always;
+    margin-bottom: 30pt;
+}
+
+/* PDF 출력시 섹션 구분선 스타일 */
+hr {
+    border: 0;
+    height: 1pt;
+    background-color: #ddd;
+    margin: 30pt 0;
+}
+
+/* PDF 출력시 목차 스타일 */
+.toc {
+    margin: 30pt 0;
+    page-break-after: always;
+}
+
+.toc h2 {
+    margin-bottom: 20pt;
+}
+
+.toc-item {
+    margin: 8pt 0;
+    padding-left: 20pt;
+    position: relative;
+}
+
+.toc-item::before {
+    content: "•";
+    position: absolute;
+    left: 5pt;
+}
+
+/* Alignment for BIG-5 results table */
+.big5-results th {
+    text-align: center;
+}
+.big5-results td:first-child {
+    text-align: center;
+}
+.big5-results td:not(:first-child) {
+    text-align: right;
+}
+
+/* Alignment and layout for riasec results table */
+.riasec-results {
+    table-layout: fixed;
+}
+.riasec-results th,
+.riasec-results td {
+    width: 25%;
+}
+.riasec-results th {
+    text-align: center;
+}
+.riasec-results td:first-child {
+    text-align: center;
+}
+.riasec-results td:not(:first-child) {
+    text-align: right;
+}
+
+/* Alignment for BIG-5 career table */
+.big5-career th:first-child,
+.big5-career td:first-child {
+    text-align: center;
+}
+
+/* Alignment for insight & quick tip tables */
+.insight-tip th:first-child,
+.insight-tip td:first-child {
+    text-align: center;
+}
+
+/* Footnote styling */
+.footnote {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: -4px;
+    font-style: italic;
+    text-align: right;
+}
+/* Alignment and layout for values results table */
+.values-results {
+    table-layout: fixed;
+}
+.values-results th,
+.values-results td {
+    width: 25%;
+}
+.values-results th {
+    text-align: center;
+}
+.values-results td:first-child {
+    text-align: center;
+}
+.values-results td:not(:first-child) {
+    text-align: right;
+}
+
+/* Alignment and layout for AI results table */
+.ai-results {
+    table-layout: fixed;
+}
+.ai-results th,
+.ai-results td {
+    width: 25%;
+}
+.ai-results th {
+    text-align: center;
+}
+.ai-results td:first-child {
+    text-align: center;
+}
+.ai-results td:not(:first-child) {
+    text-align: right;
+}
+
+/* Alignment and layout for tech and soft results tables */
+.tech-results, .soft-results {
+    table-layout: fixed;
+}
+.tech-results th, .tech-results td,
+.soft-results th, .soft-results td {
+    width: 50%;
+}
+.tech-results th, .soft-results th {
+    text-align: center;
+}
+.tech-results td:first-child, .soft-results td:first-child {
+    text-align: center;
+}
+.tech-results td:last-child, .soft-results td:last-child {
+    text-align: right;
+}
+
+/* Alignment for tech/soft insight tables */
+.tech-insight td:first-child,
+.soft-insight td:first-child {
+    text-align: center;
+}
+
+/* Alignment for jobs tables */
+.jobs-table td:first-child,
+.jobs-table td:nth-child(2),
+.ai-jobs-table td:first-child,
+.ai-jobs-table td:nth-child(2) {
+    text-align: center;
+}

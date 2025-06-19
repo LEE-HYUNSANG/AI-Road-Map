@@ -1,0 +1,74 @@
+이름: 홍길동
+생년: 2001
+성별: 남성
+학교명: 한국공학대학교
+전공: 컴퓨터공학과
+학년: 2
+국가: Korea (Republic of)
+
+Ⅰ. 개인성향 BIG5 요인 분석
+
+| BIG-5 요인 | {name}님의 점수 | 평균값¹ | Δ Index |
+| 개방성 (O) | 57.1 | 73.0 | -15.9 |
+| 성실성 (C) | 57.1 | 73.3 | -16.2 |
+| 외향성 (E) | 57.1 | 57.3 | -0.2 |
+| 우호성 (A) | 57.1 | 70.5 | -13.4 |
+| 신경성 (N) | 57.1 | 63.8 | -6.7 |
+
+> ¹ *Gosling et al.* (2003) TIPI, U.S. college students N = 1,812
+
+Ⅱ. 진로 관심도 RIASEC 분석
+
+| RIASEC 요인 | {name}님의 점수 | 평균값² | Δ Index |
+| 현실형(Realistic) | 20.0 | 45.5 | -25.5 |
+| 탐구형(Investigative) | 20.0 | 57.8 | -37.8 |
+| 예술형(Artistic) | 20.0 | 56.5 | -36.5 |
+| 사회형(Social) | 20.0 | 58.5 | -38.5 |
+| 진취형(Enterprising) | 20.0 | 59.0 | -39.0 |
+| 관습형(Conventional) | 20.0 | 53.0 | -33.0 |
+
+> ² Stoll et al. (2020) 독일 대학생 표본 T1, N = 2,368.
+
+Ⅲ. 직업 가치관 분석
+
+| 직업 가치관 요인 | {name}님의 점수 | 평균값³ | Δ Index |
+| 능력발휘 (Achievement) | 20.0 | 72.5 | -52.5 |
+| 자율성 (Independence) | 20.0 | 41.8 | -21.8 |
+| 보상욕구 (Recognition) | 20.0 | 33.3 | -13.3 |
+| 대인관계 (Relationships) | 20.0 | 46.1 | -26.1 |
+| 사회적 인정 (Support) | 20.0 | 56.0 | -36.0 |
+| 워라벨 (Working Conditions) | 20.0 | 44.5 | -24.5 |
+
+> ³ O*NET (미국 직업 정보시스템) WIL-P&P 메인 스터디(미국 고용센터 내담자·주니어 칼리지 학생, N=1,119) 기준
+
+Ⅳ. AI 활용능력 분석
+
+| AI 활용능력 요인 | {name}님의 점수 | 평균값⁴ | Δ Index |
+| 인지적 이해 (Cognitive Understanding) | 20.0 | 79.3 | -59.3 |
+| 프롬프트 숙련도 (Prompt Skill) | 20.0 | 62.5 | -42.5 |
+| 검증 역량 (Critical Evaluation) | 20.0 | 62.5 | -42.5 |
+| 도구 적용력 (Attitudinal Openness) | 20.0 | 62.5 | -42.5 |
+| 자기 학습력 (Self-Efficacy & Adaptability) | 20.0 | 54.0 | -34.0 |
+| 협업 능력 (Collaborative Ability) | 20.0 | 62.5 | -42.5 |
+| 윤리적 책임 (Ethical Responsibility) | 20.0 | 62.5 | -42.5 |
+
+> ⁴ Normative Means:
+> -- 인지적 이해: Liu et al. (2025), Generative AI Literacy (N=344)
+> -- 기술 역량·비판적 평가·태도 개방성·협업 능력·윤리적 책임감: Nong et al. (2024), AI Literacy Scale (N=302)
+> -- 자기효능감·적응력: Akuezuilo et al. (2015), Computer Self-Efficacy (N=129)
+
+Ⅴ. 비즈니스·소프트 스킬
+
+| 비즈니스·소프트 스킬 요인 | {name}님의 점수 |
+| 분석적 사고 (Analytical Thinking) | 20.0 |
+| 문제해결 능력 (Problem-solving Skills) | 20.0 |
+| 창의력 (Creativity) | 20.0 |
+| 커뮤니케이션 (Communication) | 20.0 |
+| 협업역량 (Collaboration Capabilities) | 20.0 |
+| 리더십 (Leadership) | 20.0 |
+| 자기주도학습 (Self-paced Learning) | 20.0 |
+| 적응력 (Adaptability) | 20.0 |
+| 회복력 (Resilience) | 20.0 |
+| 공감 능력 (Empathy) | 20.0 |
+| 주도성 (Initiative) | 20.0 |
+| 디지털 역량 (Digital Capabilities) | 20.0 |

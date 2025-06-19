@@ -1,0 +1,28 @@
+# File: .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    paths:
+      - '**/*.json'
+      - 'charts/**'
+      - 'templates/**'
+      - 'generate_report.py'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: my_career_report
+      - name: Run report generation
+        run: python generate_report.py
+        working-directory: my_career_report
+      - name: Success
+        run: echo "Report created"

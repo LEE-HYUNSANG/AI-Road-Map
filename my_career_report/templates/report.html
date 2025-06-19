@@ -1,0 +1,860 @@
+<!-- File: templates/report.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>AI 기반 진로 탐색 및 역량 진단 결과 보고서</title>
+  <link rel="stylesheet" href="{{ styles.css }}">
+  <script src="{{ scripts.chartjs }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body>
+  <div class="cover-page">
+    <div class="cover-content">
+      <h1>📝 AI 기반 진로 탐색 및 역량 진단 결과 보고서</h1>
+      <div class="cover-info">
+        <p class="user-info">👤 {{ name }}</p>
+        <p class="date-info">📅 {{ date }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-break"></div>
+
+  <div class="toc">
+    <h2>목차</h2>
+    <div class="toc-item">Ⅰ. 개인성향 BIG5 요인 분석</div>
+    <div class="toc-item">Ⅱ. 직무 관심사 분석</div>
+    <div class="toc-item">Ⅲ. 직업 가치관 분석</div>
+    <div class="toc-item">Ⅳ. AI/데이터 직무 적성 분석</div>
+    <div class="toc-item">Ⅴ. 기술/소프트 스킬 분석</div>
+  </div>
+
+  <hr/>
+
+  <!-- Ⅰ. 개인성향 BIG5 요인 분석 -->
+  <h2>Ⅰ. 개인성향 BIG5 요인 분석</h2>
+  {% set factor_labels = {"E":"외향성","A":"친화성","C":"성실성","N":"신경성","O":"개방성"} %}
+  <h3>📈 BIG‐5 성향 그래프</h3>
+  <div class="chart-container">
+    <canvas id="big5Chart" class="chart-canvas" width="800" height="600"></canvas>
+    <img src="{{ charts.images.big5 }}" class="chart-img" width="800" height="600" alt="BIG-5 chart"/>
+  </div>
+
+  <section class="report-section result-section">
+    <div class="section-header">
+      <h3>📊 1-1. 검사 결과</h3>
+    </div>
+    <table class="big5-results data-table">
+      <thead>
+        <tr>
+          <th>Big-5 요인</th><th>{{ name }}님의 점수</th><th>평균값</th><th>Δ Index</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for factor in ["E","A","C","N","O"] %}
+        <tr>
+          <td>{{ factor_labels[factor] }}</td>
+          <td>{{ big5[factor]|round(1) }}</td>
+          <td>{{ big5_norm[factor]|round(1) }}</td>
+          <td>{{ (big5[factor] - big5_norm[factor])|round(1) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="footnote">Gosling et al. (2003) TIPI, U.S. college students N ≈ 1,812</p>
+  </section>
+
+  <section class="report-section insight-section">
+    <div class="section-header">
+      <h3>💡 1-2. 인사이트 & Quick Tip</h3>
+    </div>
+    <table class="insight-tip data-table">
+      <thead>
+        <tr><th>Big-5 요인</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
+      </thead>
+      <tbody>
+        {% for factor in ["E","A","C","N","O"] %}
+        <tr>
+          <td>{{ factor_labels[factor] }}</td>
+          <td>{{ insight[factor] }}</td>
+          <td>{{ tip[factor] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section profile-section">
+    <div class="section-header">
+      <h3>🚀 1-3. Profile Tagline & 주요 역할</h3>
+    </div>
+    <p><strong>Tagline</strong>: {{ profile.big5.tagline }}</p>
+    <blockquote>{{ profile.big5.summary }}</blockquote>
+    <ul>
+      {% for r in role.big5 %}
+      <li>🎯 <strong>{{ r.name }}</strong>: {{ r.reason }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="report-section">
+    <h3>🎯 1-4. 커리어 매칭 (BIG-5 기반)</h3>
+    <table class="big5-career">
+      <thead>
+        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
+      </thead>
+      <tbody>
+        {% for c in career.big5 %}
+        <tr>
+          <td>
+            <strong>
+              {% for code in c.combo.split('+') %}
+                {{ factor_labels[code] }}{% if not loop.last %}+{% endif %}
+              {% endfor %}
+            </strong>
+          </td>
+          <td>{{ c.job }}</td>
+          <td>{{ c.reason }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>⚙️ 1-5. 성장 포인트 3가지</h3>
+    <ol>
+      {% for g in growth.big5 %}
+      <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="report-section">
+    <h3>⚠️ 1-6. 리스크 관리 3가지</h3>
+    <ol>
+      {% for r in risk.big5 %}
+      <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅱ. 직무 관심사 분석 -->
+  <h2>Ⅱ. 직무 관심사 분석</h2>
+  <h3>📈 직무 관심사 그래프</h3>
+  <div class="chart-container">
+    <canvas id="riasecChart" class="chart-canvas" width="800" height="600"></canvas>
+    <img src="{{ charts.images.riasec }}" class="chart-img" width="600" height="400" alt="RIASEC chart"/>
+  </div>
+  {% set riasec_labels = {"R":"현실형","I":"탐구형","A":"예술형","S":"사회형","E":"진취형","C":"관습형"} %}
+
+  <section class="report-section">
+    <h3>📊 2-1. 검사 결과</h3>
+    <table class="insight-tip riasec-results">
+      <thead>
+        <tr><th>직무 관심사</th><th>{{ name }}님의 점수</th><th>평균값</th><th>Δ Index</th></tr>
+      </thead>
+      <tbody>
+        {% for t in ["R","I","A","S","E","C"] %}
+        <tr>
+          <td>{{ riasec_labels[t] }}</td>
+          <td>{{ riasec[t]|round(1) }}</td>
+          <td>{{ riasec_norm[t]|round(1) }}</td>
+          <td>{{ (riasec[t] - riasec_norm[t])|round(1) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="footnote">Stoll et al. (2020) 독일 대학생 표본 T1, N ≈ 2,368</p>
+  </section>
+
+  <section class="report-section">
+    <h3>💡 2-2. 인사이트 & Quick Tip</h3>
+    <table class="insight-tip">
+      <thead>
+        <tr><th>직무 관심사</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
+      </thead>
+      <tbody>
+        {% for t in ["R","I","A","S","E","C"] %}
+        <tr>
+          <td>{{ riasec_labels[t] }}</td>
+          <td>{{ insight.riasec[t] }}</td>
+          <td>{{ tip.riasec[t] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>🚀 2-3. Profile Tagline & 주요 역할</h3>
+    <p><strong>Tagline</strong>: {{ profile.riasec.tagline }}</p>
+    <blockquote>{{ profile.riasec.summary }}</blockquote>
+    <ul>
+      {% for r in role.riasec %}
+      <li>🎯 <strong>{{ r.name }}</strong>: {{ r.reason }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="report-section">
+    <h3>🎯 2-4. 커리어 매칭 (RIASEC 기반)</h3>
+    <table class="insight-tip">
+      <thead>
+        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
+      </thead>
+      <tbody>
+        {% for c in career.riasec %}
+        <tr>
+          <td>
+            <strong>
+              {% for code in c.combo.split('+') %}
+                {{ riasec_labels[code] }}{% if not loop.last %} + {% endif %}
+              {% endfor %}
+            </strong>
+          </td>
+          <td>{{ c.job }}</td>
+          <td>{{ c.reason }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>⚙️ 2-5. 성장 포인트 3가지</h3>
+    <ol>
+      {% for g in growth.riasec %}
+      <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="report-section">
+    <h3>⚠️ 2-6. 리스크 관리 3가지</h3>
+    <ol>
+      {% for r in risk.riasec %}
+      <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅲ. 직업 가치관 분석 -->
+  <h2>Ⅲ. 직업 가치관 분석</h2>
+  <h3>📈 직업 가치관 그래프</h3>
+  <canvas id="valuesChart" class="chart-canvas" width="600" height="400"></canvas>
+  <img src="{{ charts.images['values'] }}" class="chart-img" width="600" height="400" alt="Values chart"/>
+  {% set values_labels = {"A":"능력발휘","I":"자율성","Rec":"보상","Rel":"안정성","S":"사회적 인정","W":"워라밸"} %}
+
+  <section class="report-section">
+    <h3>📊 3-1. 검사 결과</h3>
+    <table class="insight-tip values-results">
+      <thead>
+        <tr><th>직업 가치관</th><th>{{ name }}님의 점수</th><th>평균값</th></tr>
+      </thead>
+      <tbody>
+        {% for k in ["A","I","Rec","Rel","S","W"] %}
+        <tr>
+          <td>{{ values_labels[k] }}</td>
+          <td>{{ values[k]|round(1) }}</td>
+          <td>{{ values_norm[k]|round(1) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="footnote">O*NET WIL-P&amp;P, 미국 고용센터 내담자·주니어 칼리지 학생 N≈1,119</p>
+  </section>
+
+  <section class="report-section">
+    <h3>💡 3-2. 인사이트 & Quick Tip</h3>
+    <table class="insight-tip">
+      <thead>
+        <tr><th>BIG-5 성향</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
+      </thead>
+      <tbody>
+        {% for k in ["A","I","Rec","Rel","S","W"] %}
+        <tr>
+          <td>{{ values_labels[k] }}</td>
+          <td>{{ insight['values'][k] }}</td>
+          <td>{{ tip['values'][k] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>🚀 3-3. Profile Tagline & 주요 역할</h3>
+    <p><strong>Tagline</strong>: {{ profile['values'].tagline }}</p>
+    <blockquote>{{ profile['values'].summary }}</blockquote>
+    <ul>
+      {% for r in role['values'] %}
+      <li>🎯 <strong>{{ r.name }}</strong>: {{ r.reason }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="report-section">
+    <h3>🎯 3-4. 커리어 매칭 (직업 가치관 기반)</h3>
+    <table>
+      <thead>
+        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
+      </thead>
+      <tbody>
+        {% for c in career['values'] %}
+        <tr>
+          <td>
+            <strong>
+              {% for code in c.combo.split('+') %}
+                {{ values_labels[code]|default(code) }}{% if not loop.last %}+{% endif %}
+              {% endfor %}
+            </strong>
+          </td>
+          <td>{{ c.job }}</td>
+          <td>{{ c.reason }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>⚙️ 3-5. 성장 포인트 3가지</h3>
+    <ol>
+      {% for g in growth['values'] %}
+      <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="report-section">
+    <h3>⚠️ 3-6. 리스크 관리 3가지</h3>
+    <ol>
+      {% for r in risk['values'] %}
+      <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅳ. AI 활용능력 분석 -->
+  <h2>Ⅳ. AI 활용능력 분석</h2>
+  <h3>📈 AI 활용능력 그래프</h3>
+  <canvas id="aiChart" class="chart-canvas" width="600" height="400"></canvas>
+  <img src="{{ charts.images.ai }}" class="chart-img" width="600" height="400" alt="AI chart"/>
+  {% set ai_labels = {"EU":"AI 이해","TS":"프롬프트","CE":"검증","AO":"도구 적용","SE":"학습","CB":"협업","ER":"윤리"} %}
+
+  <section class="report-section">
+    <h3>📊 4-1. 검사 결과</h3>
+    <table class="ai-results">
+      <thead>
+        <tr><th>AI 활용능력</th><th>{{ name }}님의 점수</th><th>평균값</th><th>Δ Index</th></tr>
+      </thead>
+      <tbody>
+        {% for k in ["EU","TS","CE","AO","SE","CB","ER"] %}
+        <tr>
+          <td>{{ ai_labels[k] }}</td>
+          <td>{{ ai[k]|round(1) }}</td>
+          <td>{{ ai_norm[k]|round(1) }}</td>
+          <td>{{ (ai[k] - ai_norm[k])|round(1) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="footnote">Liu et al. (2025), Generative AI Literacy<br/>Nong et al. (2024) AI Literacy Scale<br/>Akuezuilo et al. (2015) Self-Efficacy</p>
+  </section>
+
+  <section class="report-section">
+    <h3>💡 4-2. 인사이트 & Quick Tip</h3>
+    <table class="tech-insight">
+      <thead>
+        <tr><th>AI 활용능력</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
+      </thead>
+      <tbody>
+        {% for k in ["EU","TS","CE","AO","SE","CB","ER"] %}
+        <tr>
+          <td>{{ ai_labels[k] }}</td>
+          <td>{{ insight.ai[k] }}</td>
+          <td>{{ tip.ai[k] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>🚀 4-3. Profile Tagline & 주요 역할</h3>
+    <p><strong>Tagline</strong>: {{ profile.ai.tagline }}</p>
+    <blockquote>{{ profile.ai.summary }}</blockquote>
+    <ul>
+      {% for r in role.ai %}
+      <li>🤖 <strong>{{ r.name }}</strong>: {{ r.reason }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="report-section">
+    <h3>🎯 4-4. 커리어 매칭 (AI 활용능력 기반)</h3>
+    <table>
+      <thead>
+        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
+      </thead>
+      <tbody>
+        {% for c in career.ai %}
+        <tr>
+          <td>
+            <strong>
+              {% for code in c.combo.split('+') %}
+                {{ ai_labels[code]|default(code) }}{% if not loop.last %}+{% endif %}
+              {% endfor %}
+            </strong>
+          </td>
+          <td>{{ c.job }}</td>
+          <td>{{ c.reason }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>⚙️ 4-5. 성장 포인트 3가지</h3>
+    <ol>
+      {% for g in growth.ai %}
+      <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="report-section">
+    <h3>⚠️ 4-6. 리스크 관리 3가지</h3>
+    <ol>
+      {% for r in risk.ai %}
+      <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅴ. AI/기술 핵심 역량 분석 -->
+  <h2>Ⅴ. AI/기술 핵심 역량 분석</h2>
+  <h3>📈 기술 역량 그래프</h3>
+  <canvas id="techChart" class="chart-canvas" width="600" height="400"></canvas>
+  <img src="{{ charts.images.tech }}" class="chart-img" width="600" height="400" alt="Tech chart"/>
+
+  <section class="report-section">
+    <h3>📊 5-1. 검사 결과</h3>
+    <table class="tech-results">
+      <thead>
+        <tr><th>AI/기술 핵심 역량</th><th>{{ name }}님의 점수</th></tr>
+      </thead>
+      <tbody>
+        {% for item in tech %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.score|round(1) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>💡 5-2. 인사이트 & Quick Tip</h3>
+    <table class="tech-insight">
+      <thead>
+        <tr><th>AI/기술 핵심 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
+      </thead>
+      <tbody>
+        {% for item in tech %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ insight.tech[item.name] }}</td>
+          <td>{{ tip.tech[item.name] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>🚀 5-3. Profile Tagline & 주요 역할</h3>
+    <p><strong>Tagline</strong>: {{ profile.tech.tagline }}</p>
+    <blockquote>{{ profile.tech.summary }}</blockquote>
+    <ul>
+      {% for r in role.tech %}
+      <li>🛠️ <strong>{{ r.name }}</strong>: {{ r.reason }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="report-section">
+    <h3>🎯 5-4. 커리어 매칭 (핵심 역량 기반)</h3>
+    <table>
+      <thead>
+        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
+      </thead>
+      <tbody>
+        {% for c in career.tech %}
+        <tr>
+          <td><strong>{{ c.combo }}</strong></td>
+          <td>{{ c.job }}</td>
+          <td>{{ c.reason }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>⚙️ 5-5. 성장 포인트 3가지</h3>
+    <ol>  
+      {% for g in growth.tech %}  
+      <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>  
+      {% endfor %}  
+    </ol>
+  </section>
+
+  <section class="report-section">
+    <h3>⚠️ 5-6. 리스크 관리 3가지</h3>
+    <ol>  
+      {% for r in risk.tech %}  
+      <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>  
+      {% endfor %}  
+    </ol>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅵ. 비즈니스·소프트 스킬 분석 -->
+  <h2>Ⅵ. 비즈니스·소프트 스킬 분석</h2>
+  <h3>📈 소프트 스킬 그래프</h3>
+  <canvas id="softChart" class="chart-canvas" width="600" height="400"></canvas>
+  <img src="{{ charts.images.soft }}" class="chart-img" width="600" height="400" alt="Soft skills chart"/>
+
+  <section class="report-section">
+    <h3>📊 6-1. 검사 결과</h3>
+    <table class="soft-results">
+      <thead>  
+        <tr><th>비즈니스 역량</th><th>{{ name }}님의 점수</th></tr>
+      </thead>  
+      <tbody>  
+        {% for s in soft %}  
+        <tr>  
+          <td>{{ s.name }}</td>
+          <td>{{ s.score|round(1) }}</td>
+        </tr>  
+        {% endfor %}  
+      </tbody>  
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>💡 6-2. 인사이트 & Quick Tip</h3>
+    <table class="soft-insight">  
+      <thead>  
+        <tr><th>비즈니스 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
+      </thead>  
+      <tbody>  
+        {% for s in soft %}  
+        <tr>  
+          <td>{{ s.name }}</td>  
+          <td>{{ insight.soft[s.name] }}</td>  
+          <td>{{ tip.soft[s.name] }}</td>  
+        </tr>  
+        {% endfor %}  
+      </tbody>  
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>🚀 6-3. Profile Tagline & 주요 역할</h3>
+    <p><strong>Tagline</strong>: {{ profile.soft.tagline }}</p>
+    <blockquote>{{ profile.soft.summary }}</blockquote>
+    <ul>
+      {% for r in role.soft %}
+      <li>⚙️ <strong>{{ r.name }}</strong>: {{ r.reason }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="report-section">
+    <h3>🎯 6-4. 커리어 매칭 (비즈니스·소프트 스킬 기반)</h3>
+    <table>
+      <thead>
+        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
+      </thead>
+      <tbody>
+        {% for c in career.soft %}
+        <tr>
+          <td><strong>{{ c.combo }}</strong></td>
+          <td>{{ c.job }}</td>
+          <td>{{ c.reason }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>⚙️ 6-5. 성장 포인트 3가지</h3>
+    <ol>  
+      {% for g in growth.soft %}  
+      <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>  
+      {% endfor %}  
+    </ol>
+  </section>
+
+  <section class="report-section">
+    <h3>⚠️ 6-6. 리스크 관리 3가지</h3>
+    <ol>  
+      {% for r in risk.soft %}  
+      <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>  
+      {% endfor %}  
+    </ol>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅶ. Recommendations & 제언 -->
+  <h2>Ⅶ. Recommendations & 제언</h2>
+
+  <section class="report-section">
+    <h3>💬 7-1. 맞춤형 명언</h3>
+    <blockquote>“{{ quote }}”</blockquote>
+  </section>
+
+  <section class="report-section">
+    <h3>🏅 7-2. 추천 직무 (Top 10)</h3>
+    <table class="jobs-table">
+      <thead>
+        <tr><th>순위</th><th>추천 직무</th><th>추천 사유</th><th>팁</th></tr>
+      </thead>
+      <tbody>
+        {% for job in jobs %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ job.title }}</td>
+          <td>{{ job.reason }}</td>
+          <td>{{ job.tip }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="report-section">
+    <h3>🤖 7-3. AI 관련 신직무 추천 (Top 5)</h3>
+    <table class="ai-jobs-table">
+      <thead>
+        <tr><th>순위</th><th>직무</th><th>사유</th><th>팁</th></tr>
+      </thead>
+      <tbody>
+        {% for ajob in aiJobs %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ ajob.title }}</td>
+          <td>{{ ajob.reason }}</td>
+          <td>{{ ajob.tip }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅷ. 진로 로드맵 Career Roadmap -->
+  <h2>Ⅷ. 진로 로드맵 Career Roadmap</h2>
+  <section class="report-section">
+    <h3>🛣️ 단계별 로드맵</h3>
+    <table>
+      <thead>
+        <tr><th>단계</th><th>기간</th><th>목표 Milestone</th><th>주요 액션 플랜</th></tr>
+      </thead>
+      <tbody>
+        {% for step in roadmap %}
+        <tr>
+          <td>단계 {{ loop.index }}</td>
+          <td>{{ step.period }}</td>
+          <td>{{ step.goal }}</td>
+          <td>1) {{ step.action1 }}<br/>2) {{ step.action2 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <hr/>
+
+  <!-- Ⅸ. 종합 결과: SWOT & 전략 -->
+  <h2>Ⅸ. 종합 결과: SWOT & 전략</h2>
+
+  <section class="report-section">
+    <h3>🔍 9-1. SWOT 분석</h3>
+    <h4>강점</h4>
+    <ul>
+      {% for s in swot.strengths %}<li>{{ s }}</li>{% endfor %}
+    </ul>
+    <h4>약점</h4>
+    <ul>
+      {% for w in swot.weaknesses %}<li>{{ w }}</li>{% endfor %}
+    </ul>
+    <h4>기회요소</h4>
+    <ul>
+      {% for o in swot.opportunities %}<li>{{ o }}</li>{% endfor %}
+    </ul>
+    <h4>위협요소</h4>
+    <ul>
+      {% for t in swot.threats %}<li>{{ t }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="report-section">
+    <h3>🎯 9-2. SWOT 전략</h3>
+    <h4>SO 전략</h4>
+    <ol>{% for s in swotStrategies.SO %}<li>{{ s }}</li>{% endfor %}</ol>
+    <h4>WO 전략</h4>
+    <ol>{% for s in swotStrategies.WO %}<li>{{ s }}</li>{% endfor %}</ol>
+    <h4>ST 전략</h4>
+    <ol>{% for s in swotStrategies.ST %}<li>{{ s }}</li>{% endfor %}</ol>
+    <h4>WT 전략</h4>
+    <ol>{% for s in swotStrategies.WT %}<li>{{ s }}</li>{% endfor %}</ol>
+  </section>
+
+  <!-- Chart data as JSON to avoid JS warnings -->
+  <script id="report-data" type="application/json">
+  {
+    "big5": {{ big5 | tojson }},
+    "big5_norm": {{ big5_norm | tojson }},
+    "riasec": {{ riasec | tojson }},
+    "riasec_norm": {{ riasec_norm | tojson }},
+    "values": {{ values | tojson }},
+    "values_norm": {{ values_norm | tojson }},
+    "ai": {{ ai | tojson }},
+    "ai_norm": {{ ai_norm | tojson }},
+    "tech": {
+      "labels": {{ tech | map(attribute='name') | list | tojson }},
+      "scores": {{ tech | map(attribute='score') | list | tojson }}
+    },
+    "soft": {
+      "labels": {{ soft | map(attribute='name') | list | tojson }},
+      "scores": {{ soft | map(attribute='score') | list | tojson }}
+    }
+  }
+  </script>
+
+  <script>
+    const data = JSON.parse(document.getElementById('report-data').textContent);
+    const style = window.getComputedStyle(document.body);
+    Chart.defaults.font.family = style.fontFamily;
+    Chart.defaults.font.size = parseFloat(style.fontSize);
+
+    // Ⅰ. BIG-5 차트
+    const codes = ['E','A','C','N','O'];
+    const big5Labels = ['외향성','친화성','성실성','신경성','개방성'];
+    const big5Scores = codes.map(k => data.big5[k]);
+    const big5Norm = codes.map(k => data.big5_norm[k]);
+  new Chart(document.getElementById("big5Chart"), {
+    type: 'radar',
+    data: {
+      labels: big5Labels,
+        datasets: [
+          { label: '{{ name }}님의 점수', data: big5Scores, backgroundColor: 'rgba(54, 162, 235, 0.3)', borderColor: 'rgb(54, 162, 235)', borderWidth: 2 },
+          { label: '평균값', data: big5Norm, backgroundColor: 'rgba(255, 99, 132, 0.1)', borderColor: 'rgb(255, 99, 132)', borderWidth: 2 }
+        ]
+    },
+    options: { responsive: false, scales: { r: { beginAtZero: true, max:100 } } }
+  });
+
+    // Ⅱ. 직무 관심사 차트
+    const riasecCodes = ['R','I','A','S','E','C'];
+    const riasecLabels = ["현실형","탐구형","예술형","사회형","기업형","관습형"];
+    const riasecScores = riasecCodes.map(k => data.riasec[k]);
+    const riasecNorm = riasecCodes.map(k => data.riasec_norm[k]);
+  new Chart(document.getElementById("riasecChart"), {
+    type: 'bar',
+    data: {
+      labels: riasecLabels,
+      datasets: [
+        { label: '{{ name }}님의 점수', data: riasecScores, backgroundColor: 'rgba(54, 162, 235, 0.6)', borderColor: 'rgb(54, 162, 235)', borderWidth: 1, borderRadius: 10 },
+        { label: '평균값', data: riasecNorm, backgroundColor: 'rgba(255, 99, 132, 0.4)', borderColor: 'rgb(255, 99, 132)', borderWidth: 1, borderRadius: 10 }
+      ]
+    },
+    options: { scales: { y: { beginAtZero: true, max:100 } } }
+  });
+
+    // Ⅲ. 가치관 차트
+  const valuesCodes = ['A','I','Rec','Rel','S','W'];
+  const valuesLabels = ["능력발휘","자율성","보상","안정성","사회적 인정","워라밸"];
+  const valuesScores = valuesCodes.map(k => data.values[k]);
+  const valuesNorm = valuesCodes.map(k => data.values_norm[k]);
+  new Chart(document.getElementById("valuesChart"), {
+    type: 'radar',
+    data: {
+      labels: valuesLabels,
+      datasets: [
+        { label: '{{ name }}님의 점수', data: valuesScores, backgroundColor: 'rgba(54, 162, 235, 0.3)', borderColor: 'rgb(54, 162, 235)', borderWidth: 2 },
+        { label: '평균값', data: valuesNorm, backgroundColor: 'rgba(255, 99, 132, 0.1)', borderColor: 'rgb(255, 99, 132)', borderWidth: 2 }
+      ]
+    },
+    options: { scales: { r: { beginAtZero: true, max:100 } } }
+  });
+
+    // Ⅳ. AI 활용능력 차트
+  const aiCodes = ['EU','TS','CE','AO','SE','CB','ER'];
+  const aiLabels = ["AI 이해","프롬프트","검증","도구 적용","학습","협업","윤리"];
+  const aiScores = aiCodes.map(k => data.ai[k]);
+  const aiColors = [
+    'rgba(255, 99, 132, 0.6)',  // EU
+    'rgba(255, 159, 64, 0.6)',  // TS
+    'rgba(255, 205, 86, 0.6)',  // CE
+    'rgba(75, 192, 192, 0.6)',  // AO
+    'rgba(54, 162, 235, 0.6)',  // SE
+    'rgba(153, 102, 255, 0.6)', // CB
+    'rgba(201, 203, 207, 0.6)'  // ER
+  ];
+  new Chart(document.getElementById("aiChart"), {
+    type: 'polarArea',
+    data: {
+      labels: aiLabels,
+      datasets: [{ data: aiScores, backgroundColor: aiColors }]
+    },
+    options: {
+      scales: { r: { beginAtZero: true, max:100 } },
+      plugins: { datalabels: { color: '#000', anchor: 'center', align: 'center' } }
+    }
+  });
+
+    // Ⅴ. 기술 역량 차트
+  const techLabels = data.tech.labels;
+  const techScores = data.tech.scores;
+  new Chart(document.getElementById("techChart"), {
+    type: 'bar',
+    data: {
+      labels: techLabels,
+      datasets: [{ label: 'Score', data: techScores, backgroundColor: 'rgba(54, 162, 235, 0.6)', borderColor: 'rgb(54, 162, 235)', borderWidth: 1, borderRadius: 10 }]
+    },
+    options: { indexAxis: 'y', scales: { x: { beginAtZero: true, max:100 } } }
+  });
+
+    // Ⅵ. 소프트 스킬 차트
+  const softLabels = data.soft.labels;
+  const softScores = data.soft.scores;
+  new Chart(document.getElementById("softChart"), {
+    type: 'radar',
+    data: {
+      labels: softLabels,
+      datasets: [{ label: 'Score', data: softScores, backgroundColor: 'rgba(54, 162, 235, 0.3)', borderColor: 'rgb(54, 162, 235)', borderWidth: 2 }]
+    },
+    options: { scales: { r: { beginAtZero: true, max:100 } } }
+  });
+  </script>
+</body>
+</html>
