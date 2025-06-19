@@ -2,7 +2,7 @@ output:
   html: "dist/report.html"
   pdf:  "dist/report.pdf"
 styles:
-  css:  "templates/assets/style.css"
+  css:  "templates/assets/style_simple.css"
 charts:
   data: "charts/output/chart_data.json"
   dpi: 300
