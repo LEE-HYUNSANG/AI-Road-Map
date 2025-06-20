@@ -3,46 +3,60 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>AI 기반 진로 탐색 및 역량 진단 결과 보고서</title>
-  <link rel="stylesheet" href="../templates/assets/style.css">
+  <title>진로 보고서 - 이현상</title>
+  
   <script src="chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333; }
+    h1, h2, h3, h4 { color: #2a5d84; }
+    .cover, .section { margin-bottom: 40px; }
+    .cover h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .section h2 { font-size: 1.8em; border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-bottom: 20px; }
+    h3 { font-size: 1.4em; margin-top: 20px; }
+    h4 { font-size: 1.2em; margin-top: 15px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f5f5f5; }
+    .chart-container, .chart-placeholder { width: 100%; margin-bottom: 20px; }
+    .chart-placeholder { height: 300px; background-color: #fafafa; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; }
+    .action-plan ul { list-style-type: disc; margin-left: 20px; }
+    .page-break { page-break-after: always; }
+    .chart-img { display: none; }
+    @media print {
+      body { font-size: 11pt; color: #000; background: #fff; margin: 10mm; }
+      h1 { font-size: 2.2em; }
+      h2 { font-size: 1.5em; }
+      h3 { font-size: 1.2em; }
+      h4 { font-size: 1em; }
+      .cover, .section { margin-bottom: 30px; }
+      .section h2 { border-bottom: 1.5px solid #bbb; padding-bottom: 4px; margin-bottom: 15px; }
+      table { font-size: 10pt; }
+      th, td { padding: 6px; }
+      .chart-canvas { display: none !important; }
+      .chart-img { display: block !important; margin: 0 auto; width: 90%; height: auto; }
+    }
+  </style>
 </head>
 <body>
-  <div class="cover-page">
-    <div class="cover-content">
-      <h1>📝 AI 기반 진로 탐색 및 역량 진단 결과 보고서</h1>
-      <div class="cover-info">
-        <p class="user-info">👤 이현상</p>
-        <p class="date-info">📅 2025-06-19</p>
-      </div>
-    </div>
+  <div class="cover">
+    <h1>진로 보고서</h1>
+    <p><strong>이름:</strong> 이현상 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>작성일:</strong> 2025-06-19</p>
   </div>
   <div class="page-break"></div>
-
-  <div class="toc">
-    <h2>목차</h2>
-    <div class="toc-item">Ⅰ. 개인성향 BIG5 요인 분석</div>
-    <div class="toc-item">Ⅱ. 직무 관심사 분석</div>
-    <div class="toc-item">Ⅲ. 직업 가치관 분석</div>
-    <div class="toc-item">Ⅳ. AI/데이터 직무 적성 분석</div>
-    <div class="toc-item">Ⅴ. 기술/소프트 스킬 분석</div>
-  </div>
-
-  <hr/>
 
   <!-- Ⅰ. 개인성향 BIG5 요인 분석 -->
   <h2>Ⅰ. 개인성향 BIG5 요인 분석</h2>
   
-  <h3>📈 BIG‐5 성향 그래프</h3>
+  <h3>BIG‐5 성향 그래프</h3>
   <div class="chart-container">
     <canvas id="big5Chart" class="chart-canvas" width="800" height="600"></canvas>
     <img src="../charts/output/big5.png" class="chart-img" width="800" height="600" alt="BIG-5 chart"/>
   </div>
 
-  <section class="report-section result-section">
+  <section class="section result-section">
     <div class="section-header">
-      <h3>📊 1-1. 검사 결과</h3>
+      <h3>1-1. 검사 결과</h3>
     </div>
     <table class="big5-results data-table">
       <thead>
@@ -54,37 +68,37 @@
         
         <tr>
           <td>외향성</td>
-          <td>100.0</td>
-          <td>57.3</td>
-          <td>42.7</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>친화성</td>
-          <td>92.9</td>
-          <td>70.5</td>
-          <td>22.4</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>성실성</td>
-          <td>100.0</td>
-          <td>73.3</td>
-          <td>26.7</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>신경성</td>
-          <td>85.7</td>
-          <td>63.8</td>
-          <td>21.9</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>개방성</td>
-          <td>85.7</td>
-          <td>73.0</td>
-          <td>12.7</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
       </tbody>
@@ -92,9 +106,9 @@
     <p class="footnote">Gosling et al. (2003) TIPI, U.S. college students N ≈ 1,812</p>
   </section>
 
-  <section class="report-section insight-section">
+  <section class="section insight-section">
     <div class="section-header">
-      <h3>💡 1-2. 인사이트 & Quick Tip</h3>
+      <h3>1-2. 인사이트 & Quick Tip</h3>
     </div>
     <table class="insight-tip data-table">
       <thead>
@@ -104,59 +118,59 @@
         
         <tr>
           <td>외향성</td>
-          <td>사람과 어울리고 활발하게 활동하는 성향<br>▲ 높다: 사교적이고 말이 많으며 에너지가 넘친다.<br>▼ 낮다: 조용하고 혼자 있는 걸 선호한다.</td>
-          <td>① 하루 1명과 짧은 대화를 시도한다.<br>② 주 1회 이상 모임이나 팀 활동에 참여한다.<br>③ 관심사 기반 커뮤니티나 동호회에 가입해 본다.</td>
+          <td></td>
+          <td></td>
         </tr>
         
         <tr>
           <td>친화성</td>
-          <td>타인을 배려하고 협조적인 태도를 갖는 성향<br>▲ 높다: 따뜻하고 공감하며 협력적이다.<br>▼ 낮다: 비판적이고 경쟁적이며 직설적이다.</td>
-          <td>① 먼저 감사나 칭찬의 말을 건네본다.<br>② 상대의 입장을 듣고 공감 표현을 시도한다.<br>③ 봉사 활동이나 멘토링 기회에 참여한다.</td>
+          <td></td>
+          <td></td>
         </tr>
         
         <tr>
           <td>성실성</td>
-          <td>계획적이고 책임감 있게 행동하는 성향<br>▲ 높다: 체계적이고 목표지향적이며 신중하다.<br>▼ 낮다: 충동적이고 계획에 덜 신경 쓴다.</td>
-          <td>① 매일 아침 할 일 3가지를 메모한다.<br>② 마감일을 미리 정하고 스스로 점검한다.<br>③ 루틴화 가능한 일정을 고정해 실천한다.</td>
+          <td></td>
+          <td></td>
         </tr>
         
         <tr>
           <td>신경성</td>
-          <td>스트레스에 침착하게 대응하는 성향<br>▲ 높다: 침착하고 감정을 잘 조절한다.<br>▼ 낮다: 불안하고 쉽게 스트레스를 받는다.</td>
-          <td>① 감정일기를 써서 스트레스를 언어화한다.<br>② 1일 10분 명상 또는 심호흡을 실천한다.<br>③ 상황을 문제·감정으로 나눠 정리해 본다.</td>
+          <td></td>
+          <td></td>
         </tr>
         
         <tr>
           <td>개방성</td>
-          <td>새로운 경험과 아이디어를 추구하는 성향<br>▲ 높다: 호기심 많고 창의적이며 다양성을 즐긴다.<br>▼ 낮다: 익숙함을 선호하고 변화에 소극적이다.</td>
-          <td>① 매주 1개씩 새로운 콘텐츠를 경험해 본다.<br>② 정기적으로 안 가본 장소나 행사에 가본다.<br>③ 고정관념을 깨는 질문을 스스로에게 던져본다.</td>
+          <td></td>
+          <td></td>
         </tr>
         
       </tbody>
     </table>
   </section>
 
-  <section class="report-section profile-section">
+  <section class="section profile-section">
     <div class="section-header">
-      <h3>🚀 1-3. Profile Tagline & 주요 역할</h3>
+      <h3>1-3. Profile Tagline & 주요 역할</h3>
     </div>
     <p><strong>Tagline</strong>: 조율형 실행 리더</p>
     <blockquote>탁월한 협업과 실행 능력으로 팀을 이끄는 인재</blockquote>
     <ul>
       
-      <li>🎯 <strong>갈등 완화자</strong>: 높은 친화성과 개방성으로 팀 내 갈등을 중재</li>
+      <li><strong>갈등 완화자</strong>: 높은 친화성과 개방성으로 팀 내 갈등을 중재</li>
       
-      <li>🎯 <strong>프로세스 수호자</strong>: 뛰어난 성실성으로 체계적 업무 흐름 유지</li>
+      <li><strong>프로세스 수호자</strong>: 뛰어난 성실성으로 체계적 업무 흐름 유지</li>
       
-      <li>🎯 <strong>위기 버팀목</strong>: 정서적 안정성으로 압박 상황에서 침착 대응</li>
+      <li><strong>위기 버팀목</strong>: 정서적 안정성으로 압박 상황에서 침착 대응</li>
       
-      <li>🎯 <strong>목표 지향 실행가</strong>: 외향성과 성실성을 결합해 목표 강력 추진</li>
+      <li><strong>목표 지향 실행가</strong>: 외향성과 성실성을 결합해 목표 강력 추진</li>
       
     </ul>
   </section>
 
-  <section class="report-section">
-    <h3>🎯 1-4. 커리어 매칭 (BIG-5 기반)</h3>
+  <section class="section">
+    <h3>1-4. 커리어 매칭 (BIG-5 기반)</h3>
     <table class="big5-career">
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -209,8 +223,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>⚙️ 1-5. 성장 포인트 3가지</h3>
+  <section class="section">
+    <h3>1-5. 성장 포인트 3가지</h3>
     <ol>
       
       <li><strong>균형 잡힌 의사소통 향상</strong> — 다양한 팀에서 의견 조율 연습 → 이해관계 조정 역량 강화</li>
@@ -222,8 +236,8 @@
     </ol>
   </section>
 
-  <section class="report-section">
-    <h3>⚠️ 1-6. 리스크 관리 3가지</h3>
+  <section class="section">
+    <h3>1-6. 리스크 관리 3가지</h3>
     <ol>
       
       <li><strong>과도한 사회 활동 분산</strong> — 네트워킹 집중으로 업무 집중도 저하 위험</li>
@@ -239,15 +253,15 @@
 
   <!-- Ⅱ. 직무 관심사 분석 -->
   <h2>Ⅱ. 직무 관심사 분석</h2>
-  <h3>📈 직무 관심사 그래프</h3>
+  <h3>직무 관심사 그래프</h3>
   <div class="chart-container">
     <canvas id="riasecChart" class="chart-canvas" width="800" height="600"></canvas>
     <img src="../charts/output/riasec.png" class="chart-img" width="600" height="400" alt="RIASEC chart"/>
   </div>
   
 
-  <section class="report-section">
-    <h3>📊 2-1. 검사 결과</h3>
+  <section class="section">
+    <h3>2-1. 검사 결과</h3>
     <table class="insight-tip riasec-results">
       <thead>
         <tr><th>직무 관심사</th><th>이현상님의 점수</th><th>평균값</th><th>Δ Index</th></tr>
@@ -256,44 +270,44 @@
         
         <tr>
           <td>현실형</td>
-          <td>64.0</td>
-          <td>45.5</td>
-          <td>18.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>탐구형</td>
-          <td>84.0</td>
-          <td>57.8</td>
-          <td>26.2</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>예술형</td>
-          <td>72.0</td>
-          <td>56.5</td>
-          <td>15.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>사회형</td>
-          <td>100.0</td>
-          <td>58.5</td>
-          <td>41.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>진취형</td>
-          <td>100.0</td>
-          <td>59.0</td>
-          <td>41.0</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>관습형</td>
-          <td>96.0</td>
-          <td>53.0</td>
-          <td>43.0</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
       </tbody>
@@ -301,8 +315,8 @@
     <p class="footnote">Stoll et al. (2020) 독일 대학생 표본 T1, N ≈ 2,368</p>
   </section>
 
-  <section class="report-section">
-    <h3>💡 2-2. 인사이트 & Quick Tip</h3>
+  <section class="section">
+    <h3>2-2. 인사이트 & Quick Tip</h3>
     <table class="insight-tip">
       <thead>
         <tr><th>직무 관심사</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
@@ -349,25 +363,25 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>🚀 2-3. Profile Tagline & 주요 역할</h3>
+  <section class="section">
+    <h3>2-3. Profile Tagline & 주요 역할</h3>
     <p><strong>Tagline</strong>: 사회적 진취 전략가</p>
     <blockquote>사람을 모으는 능력과 사업 구상 역량을 모두 갖춘 인재</blockquote>
     <ul>
       
-      <li>🎯 <strong>비전 전파자</strong>: 진취적 성향으로 조직에 명확한 비전 공유</li>
+      <li><strong>비전 전파자</strong>: 진취적 성향으로 조직에 명확한 비전 공유</li>
       
-      <li>🎯 <strong>네트워킹 허브</strong>: 높은 사회성으로 커뮤니티 형성 주도</li>
+      <li><strong>네트워킹 허브</strong>: 높은 사회성으로 커뮤니티 형성 주도</li>
       
-      <li>🎯 <strong>데이터 전략가</strong>: 탐구적 분석 역량으로 전략적 인사이트 도출</li>
+      <li><strong>데이터 전략가</strong>: 탐구적 분석 역량으로 전략적 인사이트 도출</li>
       
-      <li>🎯 <strong>확장 드라이버</strong>: 실재적·관습적 관심으로 프로세스 표준화</li>
+      <li><strong>확장 드라이버</strong>: 실재적·관습적 관심으로 프로세스 표준화</li>
       
     </ul>
   </section>
 
-  <section class="report-section">
-    <h3>🎯 2-4. 커리어 매칭 (RIASEC 기반)</h3>
+  <section class="section">
+    <h3>2-4. 커리어 매칭 (RIASEC 기반)</h3>
     <table class="insight-tip">
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -420,8 +434,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>⚙️ 2-5. 성장 포인트 3가지</h3>
+  <section class="section">
+    <h3>2-5. 성장 포인트 3가지</h3>
     <ol>
       
       <li><strong>리더십 실전 강화</strong> — 동아리 회장 또는 팀 프로젝트 주도 연습</li>
@@ -433,8 +447,8 @@
     </ol>
   </section>
 
-  <section class="report-section">
-    <h3>⚠️ 2-6. 리스크 관리 3가지</h3>
+  <section class="section">
+    <h3>2-6. 리스크 관리 3가지</h3>
     <ol>
       
       <li><strong>과도한 활동 분산</strong> — 여러 프로젝트 동시 진행 시 시간 분산 위험</li>
@@ -450,13 +464,13 @@
 
   <!-- Ⅲ. 직업 가치관 분석 -->
   <h2>Ⅲ. 직업 가치관 분석</h2>
-  <h3>📈 직업 가치관 그래프</h3>
+  <h3>직업 가치관 그래프</h3>
   <canvas id="valuesChart" class="chart-canvas" width="600" height="400"></canvas>
   <img src="../charts/output/values.png" class="chart-img" width="600" height="400" alt="Values chart"/>
   
 
-  <section class="report-section">
-    <h3>📊 3-1. 검사 결과</h3>
+  <section class="section">
+    <h3>3-1. 검사 결과</h3>
     <table class="insight-tip values-results">
       <thead>
         <tr><th>직업 가치관</th><th>이현상님의 점수</th><th>평균값</th></tr>
@@ -465,38 +479,38 @@
         
         <tr>
           <td>능력발휘</td>
-          <td>100.0</td>
-          <td>72.5</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>자율성</td>
-          <td>100.0</td>
-          <td>41.8</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>보상</td>
-          <td>100.0</td>
-          <td>33.3</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>안정성</td>
-          <td>100.0</td>
-          <td>46.1</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>사회적 인정</td>
-          <td>93.3</td>
-          <td>56.0</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>워라밸</td>
-          <td>93.3</td>
-          <td>44.5</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
       </tbody>
@@ -504,8 +518,8 @@
     <p class="footnote">O*NET WIL-P&amp;P, 미국 고용센터 내담자·주니어 칼리지 학생 N≈1,119</p>
   </section>
 
-  <section class="report-section">
-    <h3>💡 3-2. 인사이트 & Quick Tip</h3>
+  <section class="section">
+    <h3>3-2. 인사이트 & Quick Tip</h3>
     <table class="insight-tip">
       <thead>
         <tr><th>BIG-5 성향</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
@@ -552,25 +566,25 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>🚀 3-3. Profile Tagline & 주요 역할</h3>
+  <section class="section">
+    <h3>3-3. Profile Tagline & 주요 역할</h3>
     <p><strong>Tagline</strong>: 성과 주도형 자율 실행가</p>
     <blockquote>스스로 목표 설정·달성으로 가치를 창출하는 자율적 인재</blockquote>
     <ul>
       
-      <li>🎯 <strong>관계 촉진자</strong>: 대인관계 역량으로 협업 문화 조성</li>
+      <li><strong>관계 촉진자</strong>: 대인관계 역량으로 협업 문화 조성</li>
       
-      <li>🎯 <strong>자율 실행가</strong>: 자율성으로 프로젝트 주도·완수</li>
+      <li><strong>자율 실행가</strong>: 자율성으로 프로젝트 주도·완수</li>
       
-      <li>🎯 <strong>지원 조율자</strong>: 조직지원 기대치 반영해 리소스 최적화</li>
+      <li><strong>지원 조율자</strong>: 조직지원 기대치 반영해 리소스 최적화</li>
       
-      <li>🎯 <strong>환경 설계자</strong>: 워라밸 중심 근무환경 개선 주도</li>
+      <li><strong>환경 설계자</strong>: 워라밸 중심 근무환경 개선 주도</li>
       
     </ul>
   </section>
 
-  <section class="report-section">
-    <h3>🎯 3-4. 커리어 매칭 (직업 가치관 기반)</h3>
+  <section class="section">
+    <h3>3-4. 커리어 매칭 (직업 가치관 기반)</h3>
     <table>
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -623,8 +637,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>⚙️ 3-5. 성장 포인트 3가지</h3>
+  <section class="section">
+    <h3>3-5. 성장 포인트 3가지</h3>
     <ol>
       
       <li><strong>외부 인정 활용</strong> — 성과 기록 습관화 → 피드백 루틴 마련</li>
@@ -636,8 +650,8 @@
     </ol>
   </section>
 
-  <section class="report-section">
-    <h3>⚠️ 3-6. 리스크 관리 3가지</h3>
+  <section class="section">
+    <h3>3-6. 리스크 관리 3가지</h3>
     <ol>
       
       <li><strong>외적 인정 부족</strong> — 내적 동기에 치중 시 동기 저하 위험</li>
@@ -653,13 +667,13 @@
 
   <!-- Ⅳ. AI 활용능력 분석 -->
   <h2>Ⅳ. AI 활용능력 분석</h2>
-  <h3>📈 AI 활용능력 그래프</h3>
+  <h3>AI 활용능력 그래프</h3>
   <canvas id="aiChart" class="chart-canvas" width="600" height="400"></canvas>
   <img src="../charts/output/ai.png" class="chart-img" width="600" height="400" alt="AI chart"/>
   
 
-  <section class="report-section">
-    <h3>📊 4-1. 검사 결과</h3>
+  <section class="section">
+    <h3>4-1. 검사 결과</h3>
     <table class="ai-results">
       <thead>
         <tr><th>AI 활용능력</th><th>이현상님의 점수</th><th>평균값</th><th>Δ Index</th></tr>
@@ -668,51 +682,51 @@
         
         <tr>
           <td>AI 이해</td>
-          <td>100.0</td>
-          <td>79.3</td>
-          <td>20.7</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>프롬프트</td>
-          <td>100.0</td>
-          <td>62.5</td>
-          <td>37.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>검증</td>
-          <td>100.0</td>
-          <td>62.5</td>
-          <td>37.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>도구 적용</td>
-          <td>100.0</td>
-          <td>62.5</td>
-          <td>37.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>학습</td>
-          <td>100.0</td>
-          <td>54.0</td>
-          <td>46.0</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>협업</td>
-          <td>84.0</td>
-          <td>62.5</td>
-          <td>21.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
         <tr>
           <td>윤리</td>
-          <td>92.0</td>
-          <td>62.5</td>
-          <td>29.5</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         
       </tbody>
@@ -720,8 +734,8 @@
     <p class="footnote">Liu et al. (2025), Generative AI Literacy<br/>Nong et al. (2024) AI Literacy Scale<br/>Akuezuilo et al. (2015) Self-Efficacy</p>
   </section>
 
-  <section class="report-section">
-    <h3>💡 4-2. 인사이트 & Quick Tip</h3>
+  <section class="section">
+    <h3>4-2. 인사이트 & Quick Tip</h3>
     <table class="tech-insight">
       <thead>
         <tr><th>AI 활용능력</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
@@ -774,8 +788,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>🚀 4-3. Profile Tagline & 주요 역할</h3>
+  <section class="section">
+    <h3>4-3. Profile Tagline & 주요 역할</h3>
     <p><strong>Tagline</strong>: 윤리적 AI 혁신 실행가</p>
     <blockquote>책임 있는 AI 활용과 협업으로 혁신을 선도하는 인재</blockquote>
     <ul>
@@ -791,8 +805,8 @@
     </ul>
   </section>
 
-  <section class="report-section">
-    <h3>🎯 4-4. 커리어 매칭 (AI 활용능력 기반)</h3>
+  <section class="section">
+    <h3>4-4. 커리어 매칭 (AI 활용능력 기반)</h3>
     <table>
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -845,8 +859,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>⚙️ 4-5. 성장 포인트 3가지</h3>
+  <section class="section">
+    <h3>4-5. 성장 포인트 3가지</h3>
     <ol>
       
       <li><strong>비판적 평가 강화</strong> — 주간 출력 감사 세션 도입 → 오류·편향 기록·공유</li>
@@ -858,8 +872,8 @@
     </ol>
   </section>
 
-  <section class="report-section">
-    <h3>⚠️ 4-6. 리스크 관리 3가지</h3>
+  <section class="section">
+    <h3>4-6. 리스크 관리 3가지</h3>
     <ol>
       
       <li><strong>검증 소홀 위험</strong> — 높은 자신감이 오류 검증 약화시킬 수 있음</li>
@@ -875,12 +889,12 @@
 
   <!-- Ⅴ. AI/기술 핵심 역량 분석 -->
   <h2>Ⅴ. AI/기술 핵심 역량 분석</h2>
-  <h3>📈 기술 역량 그래프</h3>
+  <h3>기술 역량 그래프</h3>
   <canvas id="techChart" class="chart-canvas" width="600" height="400"></canvas>
   <img src="../charts/output/tech.png" class="chart-img" width="600" height="400" alt="Tech chart"/>
 
-  <section class="report-section">
-    <h3>📊 5-1. 검사 결과</h3>
+  <section class="section">
+    <h3>5-1. 검사 결과</h3>
     <table class="tech-results">
       <thead>
         <tr><th>AI/기술 핵심 역량</th><th>이현상님의 점수</th></tr>
@@ -921,8 +935,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>💡 5-2. 인사이트 & Quick Tip</h3>
+  <section class="section">
+    <h3>5-2. 인사이트 & Quick Tip</h3>
     <table class="tech-insight">
       <thead>
         <tr><th>AI/기술 핵심 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
@@ -969,8 +983,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>🚀 5-3. Profile Tagline & 주요 역할</h3>
+  <section class="section">
+    <h3>5-3. Profile Tagline & 주요 역할</h3>
     <p><strong>Tagline</strong>: 데이터 중심 자동화 혁신가</p>
     <blockquote>데이터 처리와 자동화 영역에서 성장 잠재력을 지닌 인재</blockquote>
     <ul>
@@ -986,8 +1000,8 @@
     </ul>
   </section>
 
-  <section class="report-section">
-    <h3>🎯 5-4. 커리어 매칭 (핵심 역량 기반)</h3>
+  <section class="section">
+    <h3>5-4. 커리어 매칭 (핵심 역량 기반)</h3>
     <table>
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -1016,8 +1030,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>⚙️ 5-5. 성장 포인트 3가지</h3>
+  <section class="section">
+    <h3>5-5. 성장 포인트 3가지</h3>
     <ol>  
         
       <li><strong>데이터 처리 심화</strong> — Kaggle 튜토리얼로 대용량 CSV 분석 경험 확대</li>  
@@ -1029,8 +1043,8 @@
     </ol>
   </section>
 
-  <section class="report-section">
-    <h3>⚠️ 5-6. 리스크 관리 3가지</h3>
+  <section class="section">
+    <h3>5-6. 리스크 관리 3가지</h3>
     <ol>  
         
       <li><strong>기술 편중 위험</strong> — 특정 기술에만 몰두해 전체 그림 놓칠 수 있음</li>  
@@ -1046,185 +1060,53 @@
 
   <!-- Ⅵ. 비즈니스·소프트 스킬 분석 -->
   <h2>Ⅵ. 비즈니스·소프트 스킬 분석</h2>
-  <h3>📈 소프트 스킬 그래프</h3>
+  <h3>소프트 스킬 그래프</h3>
   <canvas id="softChart" class="chart-canvas" width="600" height="400"></canvas>
   <img src="../charts/output/soft.png" class="chart-img" width="600" height="400" alt="Soft skills chart"/>
 
-  <section class="report-section">
-    <h3>📊 6-1. 검사 결과</h3>
+  <section class="section">
+    <h3>6-1. 검사 결과</h3>
     <table class="soft-results">
       <thead>  
         <tr><th>비즈니스 역량</th><th>이현상님의 점수</th></tr>
       </thead>  
       <tbody>  
           
-        <tr>  
-          <td>분석적 사고</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>문제 해결</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>창의성</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>커뮤니케이션</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>협업 역량</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>리더십</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>자기주도 학습</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>적응력</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>회복력</td>
-          <td>93.3</td>
-        </tr>  
-          
-        <tr>  
-          <td>감성 지능</td>
-          <td>93.3</td>
-        </tr>  
-          
-        <tr>  
-          <td>주도성</td>
-          <td>100.0</td>
-        </tr>  
-          
-        <tr>  
-          <td>디지털 역량</td>
-          <td>100.0</td>
-        </tr>  
-          
       </tbody>  
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>💡 6-2. 인사이트 & Quick Tip</h3>
+  <section class="section">
+    <h3>6-2. 인사이트 & Quick Tip</h3>
     <table class="soft-insight">  
       <thead>  
         <tr><th>비즈니스 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
       </thead>  
       <tbody>  
           
-        <tr>  
-          <td>분석적 사고</td>  
-          <td>정보를 논리적으로 정리하고 문제의 핵심을 도출하는 능력입니다.<br>사실과 데이터 기반의 구조화된 사고에 강점을 가집니다.</td>  
-          <td>역량 강화 팁: 정보를 논리적으로 정리하는 훈련을 해보세요. MECE나 피라미드 구조를 써보면 좋습니다.<br>추천 활동: 분석 보고서 작성, 기획서 구조화 연습</td>  
-        </tr>  
-          
-        <tr>  
-          <td>문제 해결</td>  
-          <td>문제의 원인을 파악하고 실행 가능한 해결책을 도출하는 능력입니다.<br>전략적 사고와 실행력이 핵심입니다.</td>  
-          <td>역량 강화 팁: 문제 → 원인 → 대안 → 실행 순으로 사고 정리 연습을 해보세요.<br>추천 활동: 디자인씽킹 워크숍, 사례 기반 문제 해결 스터디</td>  
-        </tr>  
-          
-        <tr>  
-          <td>창의성</td>  
-          <td>새로운 아이디어를 자유롭게 생성하고 실험하는 능력입니다.<br>창출 중심 직무(기획·디자인 등)에서 특히 요구됩니다.</td>  
-          <td>역량 강화 팁: 아이디어를 제약 없이 떠올리고 시각화해보세요.<br>추천 활동: 아이디어 보드 만들기, 브레인라이팅 실습</td>  
-        </tr>  
-          
-        <tr>  
-          <td>커뮤니케이션</td>  
-          <td>의미를 명확히 전달하고, 타인의 메시지를 수용하는 능력입니다.<br>설득, 갈등 해소, 팀워크에서 필수입니다.</td>  
-          <td>역량 강화 팁: 메시지를 명확히 하고 피드백을 반영하는 연습을 해보세요.<br>추천 활동: 발표 연습, 이메일 작성 첨삭</td>  
-        </tr>  
-          
-        <tr>  
-          <td>협업 역량</td>  
-          <td>공동 목표를 위해 역할을 조율하고 함께 성과를 내는 능력입니다.<br>책임감과 갈등 조정 능력이 포함됩니다.</td>  
-          <td>역량 강화 팁: 역할을 나누고 목표를 공유하는 협업 훈련을 해보세요.<br>추천 활동: 협업툴 실습, 역할 매트릭스 작성</td>  
-        </tr>  
-          
-        <tr>  
-          <td>리더십</td>  
-          <td>조직의 방향을 설정하고 팀을 이끄는 역량입니다.<br>결정력과 동기 부여가 주요 구성 요소입니다.</td>  
-          <td>역량 강화 팁: 소규모 프로젝트에서 리더 역할을 맡아보세요.<br>추천 활동: 모임 운영, 워크숍 진행 기획</td>  
-        </tr>  
-          
-        <tr>  
-          <td>자기주도 학습</td>  
-          <td>목표를 스스로 설정하고 학습을 지속하는 능력입니다.<br>계획 수립과 동기 조절이 핵심입니다.</td>  
-          <td>역량 강화 팁: 학습 목표를 계획하고 체크리스트로 관리해보세요.<br>추천 활동: 스터디플래너 작성, 학습 대시보드 만들기</td>  
-        </tr>  
-          
-        <tr>  
-          <td>적응력</td>  
-          <td>새로운 환경과 변화에 유연하게 대응하는 능력입니다.<br>불확실한 상황에서도 빠르게 적응할 수 있어야 합니다.</td>  
-          <td>역량 강화 팁: 새로운 환경에 반복 노출되며 적응력을 길러보세요.<br>추천 활동: 멘토링 참여, 직무 체험 활동</td>  
-        </tr>  
-          
-        <tr>  
-          <td>회복력</td>  
-          <td>실패와 스트레스 이후 다시 도전할 수 있는 심리적 복원력입니다.<br>자기 성찰과 성장 지향성이 기반이 됩니다.</td>  
-          <td>역량 강화 팁: 실패 후 교훈을 기록하고 다시 도전해보세요.<br>추천 활동: 회고 일지 작성, 성장 일기 챌린지</td>  
-        </tr>  
-          
-        <tr>  
-          <td>감성 지능</td>  
-          <td>감정을 인식하고 조절하며 관계를 원활히 유지하는 능력입니다.<br>공감과 감정 표현이 강점입니다.</td>  
-          <td>역량 강화 팁: 감정을 기록하고 타인의 입장을 이해해보세요.<br>추천 활동: 감정 일기 작성, 공감 훈련 게임</td>  
-        </tr>  
-          
-        <tr>  
-          <td>주도성</td>  
-          <td>기회를 스스로 포착하고 실행까지 주도하는 능력입니다.<br>목표 설정과 추진력이 핵심입니다.</td>  
-          <td>역량 강화 팁: 아이디어를 실행까지 스스로 끌고 가는 경험을 쌓아보세요.<br>추천 활동: 프로젝트 제안서 작성, 공모전 참가</td>  
-        </tr>  
-          
-        <tr>  
-          <td>디지털 역량</td>  
-          <td>디지털 도구를 활용해 문제를 해결하고 업무를 효율화하는 능력입니다.<br>툴 활용, 정보 검증, 자동화 경험이 포함됩니다.</td>  
-          <td>역량 강화 팁: 디지털 툴을 집중적으로 익히고 실전에 활용해보세요.<br>추천 활동: 튜토리얼 학습, 자동화 실습 미션</td>  
-        </tr>  
-          
       </tbody>  
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>🚀 6-3. Profile Tagline & 주요 역할</h3>
+  <section class="section">
+    <h3>6-3. Profile Tagline & 주요 역할</h3>
     <p><strong>Tagline</strong>: 전천후 실행형 협업 리더</p>
     <blockquote>데이터 분석부터 실행까지 전 영역을 주도하는 리더</blockquote>
     <ul>
       
-      <li>⚙️ <strong>문제 해결사</strong>: 복잡한 문제 구조화해 신속 해결</li>
+      <li><strong>문제 해결사</strong>: 복잡한 문제 구조화해 신속 해결</li>
       
-      <li>⚙️ <strong>소통 촉진자</strong>: 명확 전달과 경청으로 팀 소통 원활화</li>
+      <li><strong>소통 촉진자</strong>: 명확 전달과 경청으로 팀 소통 원활화</li>
       
-      <li>⚙️ <strong>리더십 구축자</strong>: 팀 이끌고 동기 부여 수행</li>
+      <li><strong>리더십 구축자</strong>: 팀 이끌고 동기 부여 수행</li>
       
-      <li>⚙️ <strong>디지털 혁신가</strong>: 디지털 도구 활용으로 업무 효율 극대화</li>
+      <li><strong>디지털 혁신가</strong>: 디지털 도구 활용으로 업무 효율 극대화</li>
       
     </ul>
   </section>
 
-  <section class="report-section">
-    <h3>🎯 6-4. 커리어 매칭 (비즈니스·소프트 스킬 기반)</h3>
+  <section class="section">
+    <h3>6-4. 커리어 매칭 (비즈니스·소프트 스킬 기반)</h3>
     <table>
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -1253,8 +1135,8 @@
     </table>
   </section>
 
-  <section class="report-section">
-    <h3>⚙️ 6-5. 성장 포인트 3가지</h3>
+  <section class="section">
+    <h3>6-5. 성장 포인트 3가지</h3>
     <ol>  
         
       <li><strong>전략적 네트워킹 강화</strong> — 밋업·컨퍼런스 참여 후 CRM 활용</li>  
@@ -1266,8 +1148,8 @@
     </ol>
   </section>
 
-  <section class="report-section">
-    <h3>⚠️ 6-6. 리스크 관리 3가지</h3>
+  <section class="section">
+    <h3>6-6. 리스크 관리 3가지</h3>
     <ol>  
         
       <li><strong>과도한 자신감</strong> — 지나친 자신감이 팀워크 해칠 수 있음</li>  
@@ -1284,12 +1166,12 @@
   <!-- Ⅶ. Recommendations & 제언 -->
   <h2>Ⅶ. Recommendations & 제언</h2>
 
-  <section class="report-section">
+  <section class="section">
     <h3>💬 7-1. 맞춤형 명언</h3>
-    <blockquote>“당신의 결단력과 협업 정신은 혁신의 씨앗이 됩니다. 매 순간 도전하며 성장하세요!”</blockquote>
+    <blockquote>"당신의 결단력과 협업 정신은 혁신의 씨앗이 됩니다. 매 순간 도전하며 성장하세요!”</blockquote>
   </section>
 
-  <section class="report-section">
+  <section class="section">
     <h3>🏅 7-2. 추천 직무 (Top 10)</h3>
     <table class="jobs-table">
       <thead>
@@ -1371,7 +1253,7 @@
     </table>
   </section>
 
-  <section class="report-section">
+  <section class="section">
     <h3>🤖 7-3. AI 관련 신직무 추천 (Top 5)</h3>
     <table class="ai-jobs-table">
       <thead>
@@ -1422,7 +1304,7 @@
 
   <!-- Ⅷ. 진로 로드맵 Career Roadmap -->
   <h2>Ⅷ. 진로 로드맵 Career Roadmap</h2>
-  <section class="report-section">
+  <section class="section">
     <h3>🛣️ 단계별 로드맵</h3>
     <table>
       <thead>
@@ -1460,8 +1342,8 @@
   <!-- Ⅸ. 종합 결과: SWOT & 전략 -->
   <h2>Ⅸ. 종합 결과: SWOT & 전략</h2>
 
-  <section class="report-section">
-    <h3>🔍 9-1. SWOT 분석</h3>
+  <section class="section">
+    <h3>9-1. SWOT 분석</h3>
     <h4>강점</h4>
     <ul>
       <li>외향성과 성실성의 결합으로 대외 협업과 체계적 업무 수행에 탁월</li><li>높은 사회성·진취적 관심으로 네트워킹 및 사업 개발 역량 우수</li><li>AI 활용능력과 비즈니스·소프트 스킬 전 영역에서 뛰어난 퍼포먼스</li><li>자율성과 성취성, 리더십이 결합된 자기주도형 실행력</li>
@@ -1480,8 +1362,8 @@
     </ul>
   </section>
 
-  <section class="report-section">
-    <h3>🎯 9-2. SWOT 전략</h3>
+  <section class="section">
+    <h3>9-2. SWOT 전략</h3>
     <h4>SO 전략</h4>
     <ol><li>AI 기반 네트워킹 플랫폼 기획으로 시장 선도</li><li>데이터 분석과 리더십 결합 교육 콘텐츠 개발</li><li>프로젝트 관리 노하우 활용 혁신 솔루션 제안</li></ol>
     <h4>WO 전략</h4>
@@ -1495,21 +1377,21 @@
   <!-- Chart data as JSON to avoid JS warnings -->
   <script id="report-data" type="application/json">
   {
-    "big5": {"A": 92.9, "C": 100.0, "E": 100.0, "N": 85.7, "O": 85.7},
-    "big5_norm": {"A": 70.5, "C": 73.3, "E": 57.3, "N": 63.8, "O": 73.0},
-    "riasec": {"A": 72.0, "C": 96.0, "E": 100.0, "I": 84.0, "R": 64.0, "S": 100.0},
-    "riasec_norm": {"A": 56.5, "C": 53.0, "E": 59.0, "I": 57.8, "R": 45.5, "S": 58.5},
-    "values": {"A": 100.0, "I": 100.0, "Rec": 100.0, "Rel": 100.0, "S": 93.3, "W": 93.3},
-    "values_norm": {"A": 72.5, "I": 41.8, "Rec": 33.3, "Rel": 46.1, "S": 56.0, "W": 44.5},
-    "ai": {"AO": 100.0, "CB": 84.0, "CE": 100.0, "ER": 92.0, "EU": 100.0, "SE": 100.0, "TS": 100.0},
-    "ai_norm": {"AO": 62.5, "CB": 62.5, "CE": 62.5, "ER": 62.5, "EU": 79.3, "SE": 54.0, "TS": 62.5},
+    "big5": {"A": null, "C": null, "E": null, "N": null, "O": null},
+    "big5_norm": {"A": null, "C": null, "E": null, "N": null, "O": null},
+    "riasec": {"A": null, "C": null, "E": null, "I": null, "R": null, "S": null},
+    "riasec_norm": {"A": null, "C": null, "E": null, "I": null, "R": null, "S": null},
+    "values": {"A": null, "I": null, "Rec": null, "Rel": null, "S": null, "W": null},
+    "values_norm": {"A": null, "I": null, "Rec": null, "Rel": null, "S": null, "W": null},
+    "ai": {"AO": null, "CB": null, "CE": null, "ER": null, "EU": null, "SE": null, "TS": null},
+    "ai_norm": {"AO": null, "CB": null, "CE": null, "ER": null, "EU": null, "SE": null, "TS": null},
     "tech": {
       "labels": ["\ub370\uc774\ud130 \ubc0f \uba38\uc2e0\ub7ec\ub2dd", "\uc18c\ud504\ud2b8\uc6e8\uc5b4 \uc5d4\uc9c0\ub2c8\uc5b4\ub9c1 \ubc0f \uc790\ub3d9\ud654", "\uc724\ub9ac \ubc0f \uc548\uc804", "\ub3c4\uba54\uc778\ubcc4 \uae30\uc220", "\ub514\uc9c0\ud138 \ucc3d\uc758\uc131 \ubc0f UX", "\uc5f0\uad6c \ubc0f \ubb38\uc11c\ud654"],
       "scores": [23.3, 20.0, 13.3, 0.0, 33.3, 13.3]
     },
     "soft": {
-      "labels": ["\ubd84\uc11d\uc801 \uc0ac\uace0", "\ubb38\uc81c \ud574\uacb0", "\ucc3d\uc758\uc131", "\ucee4\ubba4\ub2c8\ucf00\uc774\uc158", "\ud611\uc5c5 \uc5ed\ub7c9", "\ub9ac\ub354\uc2ed", "\uc790\uae30\uc8fc\ub3c4 \ud559\uc2b5", "\uc801\uc751\ub825", "\ud68c\ubcf5\ub825", "\uac10\uc131 \uc9c0\ub2a5", "\uc8fc\ub3c4\uc131", "\ub514\uc9c0\ud138 \uc5ed\ub7c9"],
-      "scores": [100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 93.3, 93.3, 100.0, 100.0]
+      "labels": [],
+      "scores": []
     }
   }
   </script>

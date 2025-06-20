@@ -4,9 +4,39 @@
 <head>
   <meta charset="utf-8">
   <title>진로 보고서 - {{ name }}</title>
-  <link rel="stylesheet" href="{{ styles.css }}">
+  {# <link rel="stylesheet" href="{{ styles.css }}"> #}
   <script src="{{ scripts.chartjs }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333; }
+    h1, h2, h3, h4 { color: #2a5d84; }
+    .cover, .section { margin-bottom: 40px; }
+    .cover h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .section h2 { font-size: 1.8em; border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-bottom: 20px; }
+    h3 { font-size: 1.4em; margin-top: 20px; }
+    h4 { font-size: 1.2em; margin-top: 15px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f5f5f5; }
+    .chart-container, .chart-placeholder { width: 100%; margin-bottom: 20px; }
+    .chart-placeholder { height: 300px; background-color: #fafafa; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; }
+    .action-plan ul { list-style-type: disc; margin-left: 20px; }
+    .page-break { page-break-after: always; }
+    .chart-img { display: none; }
+    @media print {
+      body { font-size: 11pt; color: #000; background: #fff; margin: 10mm; }
+      h1 { font-size: 2.2em; }
+      h2 { font-size: 1.5em; }
+      h3 { font-size: 1.2em; }
+      h4 { font-size: 1em; }
+      .cover, .section { margin-bottom: 30px; }
+      .section h2 { border-bottom: 1.5px solid #bbb; padding-bottom: 4px; margin-bottom: 15px; }
+      table { font-size: 10pt; }
+      th, td { padding: 6px; }
+      .chart-canvas { display: none !important; }
+      .chart-img { display: block !important; margin: 0 auto; width: 90%; height: auto; }
+    }
+  </style>
 </head>
 <body>
   <div class="cover">
@@ -38,9 +68,9 @@
         {% for factor in ["E","A","C","N","O"] %}
         <tr>
           <td>{{ factor_labels[factor] }}</td>
-          <td>{{ big5[factor]|round(1) }}</td>
-          <td>{{ big5_norm[factor]|round(1) }}</td>
-          <td>{{ (big5[factor] - big5_norm[factor])|round(1) }}</td>
+          <td>{% if big5[factor] is defined and big5[factor] is not none %}{{ big5[factor]|round(1) }}{% else %}-{% endif %}</td>
+          <td>{% if big5_norm[factor] is defined and big5_norm[factor] is not none %}{{ big5_norm[factor]|round(1) }}{% else %}-{% endif %}</td>
+          <td>{% if big5_delta[factor] is defined and big5_delta[factor] is not none %}{{ big5_delta[factor]|round(1) }}{% else %}-{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -144,9 +174,9 @@
         {% for t in ["R","I","A","S","E","C"] %}
         <tr>
           <td>{{ riasec_labels[t] }}</td>
-          <td>{{ riasec[t]|round(1) }}</td>
-          <td>{{ riasec_norm[t]|round(1) }}</td>
-          <td>{{ (riasec[t] - riasec_norm[t])|round(1) }}</td>
+          <td>{% if riasec[t] is defined and riasec[t] is not none %}{{ riasec[t]|round(1) }}{% else %}-{% endif %}</td>
+          <td>{% if riasec_norm[t] is defined and riasec_norm[t] is not none %}{{ riasec_norm[t]|round(1) }}{% else %}-{% endif %}</td>
+          <td>{% if riasec_delta[t] is defined and riasec_delta[t] is not none %}{{ riasec_delta[t]|round(1) }}{% else %}-{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -244,8 +274,8 @@
         {% for k in ["A","I","Rec","Rel","S","W"] %}
         <tr>
           <td>{{ values_labels[k] }}</td>
-          <td>{{ values[k]|round(1) }}</td>
-          <td>{{ values_norm[k]|round(1) }}</td>
+          <td>{% if values[k] is defined and values[k] is not none %}{{ values[k]|round(1) }}{% else %}-{% endif %}</td>
+          <td>{% if values_norm[k] is defined and values_norm[k] is not none %}{{ values_norm[k]|round(1) }}{% else %}-{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -343,9 +373,9 @@
         {% for k in ["EU","TS","CE","AO","SE","CB","ER"] %}
         <tr>
           <td>{{ ai_labels[k] }}</td>
-          <td>{{ ai[k]|round(1) }}</td>
-          <td>{{ ai_norm[k]|round(1) }}</td>
-          <td>{{ (ai[k] - ai_norm[k])|round(1) }}</td>
+          <td>{% if ai[k] is defined and ai[k] is not none %}{{ ai[k]|round(1) }}{% else %}-{% endif %}</td>
+          <td>{% if ai_norm[k] is defined and ai_norm[k] is not none %}{{ ai_norm[k]|round(1) }}{% else %}-{% endif %}</td>
+          <td>{% if ai_delta[k] is defined and ai_delta[k] is not none %}{{ ai_delta[k]|round(1) }}{% else %}-{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -611,7 +641,7 @@
 
   <section class="section">
     <h3>💬 7-1. 맞춤형 명언</h3>
-    <blockquote>“{{ quote }}”</blockquote>
+    <blockquote>"{{ quote }}”</blockquote>
   </section>
 
   <section class="section">
