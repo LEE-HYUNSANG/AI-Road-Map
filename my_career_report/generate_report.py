@@ -182,7 +182,7 @@ def main():
         data_filename = sys.argv[1]
         data_path = os.path.join(BASE_DIR, 'data', data_filename)
     else:
-        raise RuntimeError('json 파일명을 인자로 지정해야 합니다.')
+        data_path = DATA_PATH
     with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
         cfg = yaml.safe_load(f)
     data = load_data(data_path)
