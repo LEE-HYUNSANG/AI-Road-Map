@@ -52,5 +52,6 @@ bash run_report.sh
   - 시스템에 `Noto Sans CJK`나 `NanumSquare` 계열 폰트가 설치되어 있어야 한글이 올바르게 표시됩니다.
 - **데이터 수정**
   - `data/sample_input.json` 파일을 원하는 값으로 수정해 나만의 리포트를 만들어 보세요.
+  - `big5_norm`, `riasec_norm` 등 평균 점수는 `data/02_metrics_data` 폴더의 텍스트 파일에서 자동으로 불러옵니다. `fix_input.json`에는 입력하지 않습니다.
 
 간단한 예제로 시작했지만, 실제 기획 문서 제작이나 다른 데이터와 연동해 확장하는 등 다양한 방법으로 활용할 수 있습니다.
