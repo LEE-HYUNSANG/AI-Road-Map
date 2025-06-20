@@ -27,9 +27,11 @@ python --version
 ## 리포트 생성
 
 아래 명령을 실행하면 `dist` 폴더에 `report.html`과 `report.pdf`가 생성됩니다.
+별도의 인자를 주지 않으면 기본 `data/sample_input.json`을 사용하며,
+다른 JSON 파일을 사용하려면 파일명을 인자로 전달하면 됩니다.
 
 ```bash
-python generate_report.py
+python generate_report.py [파일명.json]
 ```
 
 또는 스크립트와 패키지 설치를 한 번에 수행하려면:
@@ -45,7 +47,7 @@ bash run_report.sh
 - **그래프 이미지**
   - PDF 파일은 자바스크립트를 실행하지 못하므로, 보고서 생성 과정에서 Chart.js로 그래프 이미지를 미리 만들어 포함합니다.
   - `my_career_report/charts/output` 폴더의 PNG 파일은 `generate_report.py` 실행 시 자동으로 생성되며 `.gitignore`에 의해 버전 관리 대상에서 제외됩니다.
-  - `npm install` 후 `python generate_report.py` 명령을 실행하면 필요한 이미지를 함께 생성합니다.
+  - `npm install` 후 `python generate_report.py [파일명.json]` 명령을 실행하면 필요한 이미지를 함께 생성합니다.
 - **한글 폰트**
   - 시스템에 `Noto Sans CJK`나 `NanumSquare` 계열 폰트가 설치되어 있어야 한글이 올바르게 표시됩니다.
 - **데이터 수정**
