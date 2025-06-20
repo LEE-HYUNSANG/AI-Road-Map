@@ -10,15 +10,19 @@
   <style>
     body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333; }
     h1, h2, h3, h4 { color: #2a5d84; }
-    .cover, .section { margin-bottom: 40px; }
-    .cover h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .cover { text-align:center; margin-bottom:40px; padding:60px 20px; background: linear-gradient(#f6f9fc,#fff); border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+    .section { margin-bottom: 40px; }
+    .cover h1 { font-size: 3em; margin-bottom: 20px; color:#1a365d; }
+    .cover-info { font-size: 1.2em; color:#4a5568; }
+    .cover-quote { margin-top:30px; font-style: italic; color:#555; border-left:4px solid #2a5d84; padding-left:16px; }
     .section h2 { font-size: 1.8em; border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-bottom: 20px; }
     h3 { font-size: 1.4em; margin-top: 20px; }
     h4 { font-size: 1.2em; margin-top: 15px; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
     th { background-color: #f5f5f5; }
-    .chart-container, .chart-placeholder { width: 100%; margin-bottom: 20px; }
+    .chart-container, .chart-placeholder { width: 100%; margin-bottom: 20px; text-align:center; }
+    .chart-canvas, .chart-img { display:block; margin:0 auto; }
     .chart-placeholder { height: 300px; background-color: #fafafa; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; }
     .action-plan ul { list-style-type: disc; margin-left: 20px; }
     .page-break { page-break-after: always; }
@@ -40,8 +44,9 @@
 </head>
 <body>
   <div class="cover">
-    <h1>진로 보고서</h1>
-    <p><strong>이름:</strong> {{ name }} &nbsp;&nbsp;|&nbsp;&nbsp; <strong>작성일:</strong> {{ date }}</p>
+    <h1>AI 진로 진단 보고서</h1>
+    <p class="cover-info">{{ name }} | {{ date }}</p>
+    <blockquote class="cover-quote">“{{ quote }}”</blockquote>
   </div>
   <div class="page-break"></div>
 
@@ -51,7 +56,7 @@
   <h3>BIG‐5 성향 그래프</h3>
   <div class="chart-container">
     <canvas id="big5Chart" class="chart-canvas" width="800" height="600"></canvas>
-    <img src="{{ charts.images.big5 }}" class="chart-img" width="800" height="600" alt="BIG-5 chart"/>
+    <img src="{{ charts.images.big5 }}" class="chart-img" width="600" height="400" alt="BIG-5 chart"/>
   </div>
 
   <section class="section result-section">
@@ -260,7 +265,7 @@
   <!-- Ⅲ. 직업 가치관 분석 -->
   <h2>Ⅲ. 직업 가치관 분석</h2>
   <h3>직업 가치관 그래프</h3>
-  <canvas id="valuesChart" class="chart-canvas" width="600" height="400"></canvas>
+  <canvas id="valuesChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="{{ charts.images['values'] }}" class="chart-img" width="600" height="400" alt="Values chart"/>
   {% set values_labels = {"A":"능력발휘","I":"자율성","Rec":"보상","Rel":"안정성","S":"사회적 인정","W":"워라밸"} %}
 
@@ -359,7 +364,7 @@
   <!-- Ⅳ. AI 활용능력 분석 -->
   <h2>Ⅳ. AI 활용능력 분석</h2>
   <h3>AI 활용능력 그래프</h3>
-  <canvas id="aiChart" class="chart-canvas" width="600" height="400"></canvas>
+  <canvas id="aiChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="{{ charts.images.ai }}" class="chart-img" width="600" height="400" alt="AI chart"/>
   {% set ai_labels = {"EU":"AI 이해","TS":"프롬프트","CE":"검증","AO":"도구 적용","SE":"학습","CB":"협업","ER":"윤리"} %}
 
@@ -459,7 +464,7 @@
   <!-- Ⅴ. AI/기술 핵심 역량 분석 -->
   <h2>Ⅴ. AI/기술 핵심 역량 분석</h2>
   <h3>기술 역량 그래프</h3>
-  <canvas id="techChart" class="chart-canvas" width="600" height="400"></canvas>
+  <canvas id="techChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="{{ charts.images.tech }}" class="chart-img" width="600" height="400" alt="Tech chart"/>
 
   <section class="section">
@@ -549,7 +554,7 @@
   <!-- Ⅵ. 비즈니스·소프트 스킬 분석 -->
   <h2>Ⅵ. 비즈니스·소프트 스킬 분석</h2>
   <h3>소프트 스킬 그래프</h3>
-  <canvas id="softChart" class="chart-canvas" width="600" height="400"></canvas>
+  <canvas id="softChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="{{ charts.images.soft }}" class="chart-img" width="600" height="400" alt="Soft skills chart"/>
 
   <section class="section">
