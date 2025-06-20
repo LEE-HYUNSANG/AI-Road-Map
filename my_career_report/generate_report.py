@@ -214,22 +214,46 @@ def main():
         if key in metrics:
             data[key] = metrics[key]
     # insight/tip 매핑
-    data['insight'] = {
-        'big5': map_insight_tip_section(fix['insight'], BIG5_MAP) if 'insight' in fix else {},
-        'riasec': map_insight_tip_section(fix['insight']['riasec'], RIASEC_MAP) if 'insight' in fix and 'riasec' in fix['insight'] else {},
-        'values': map_insight_tip_section(fix['insight']['values'], VALUES_MAP) if 'insight' in fix and 'values' in fix['insight'] else {},
-        'ai': map_insight_tip_section(fix['insight']['ai'], AI_MAP) if 'insight' in fix and 'ai' in fix['insight'] else {},
-        'tech': fix['insight']['tech'] if 'insight' in fix and 'tech' in fix['insight'] else {},
-        'soft': fix['insight']['soft'] if 'insight' in fix and 'soft' in fix['insight'] else {},
-    }
-    data['tip'] = {
-        'big5': map_insight_tip_section(fix['tip'], BIG5_MAP) if 'tip' in fix else {},
-        'riasec': map_insight_tip_section(fix['tip']['riasec'], RIASEC_MAP) if 'tip' in fix and 'riasec' in fix['tip'] else {},
-        'values': map_insight_tip_section(fix['tip']['values'], VALUES_MAP) if 'tip' in fix and 'values' in fix['tip'] else {},
-        'ai': map_insight_tip_section(fix['tip']['ai'], AI_MAP) if 'tip' in fix and 'ai' in fix['tip'] else {},
-        'tech': fix['tip']['tech'] if 'tip' in fix and 'tech' in fix['tip'] else {},
-        'soft': fix['tip']['soft'] if 'tip' in fix and 'soft' in fix['tip'] else {},
-    }
+    # insight/tip 매핑
+    data['insight'] = {}
+    if 'insight' in fix:
+        data['insight'].update(map_insight_tip_section(fix['insight'], BIG5_MAP))
+        if 'riasec' in fix['insight']:
+            data['insight']['riasec'] = map_insight_tip_section(
+                fix['insight']['riasec'], RIASEC_MAP
+            )
+        if 'values' in fix['insight']:
+            data['insight']['values'] = map_insight_tip_section(
+                fix['insight']['values'], VALUES_MAP
+            )
+        if 'ai' in fix['insight']:
+            data['insight']['ai'] = map_insight_tip_section(
+                fix['insight']['ai'], AI_MAP
+            )
+        if 'tech' in fix['insight']:
+            data['insight']['tech'] = fix['insight']['tech']
+        if 'soft' in fix['insight']:
+            data['insight']['soft'] = fix['insight']['soft']
+
+    data['tip'] = {}
+    if 'tip' in fix:
+        data['tip'].update(map_insight_tip_section(fix['tip'], BIG5_MAP))
+        if 'riasec' in fix['tip']:
+            data['tip']['riasec'] = map_insight_tip_section(
+                fix['tip']['riasec'], RIASEC_MAP
+            )
+        if 'values' in fix['tip']:
+            data['tip']['values'] = map_insight_tip_section(
+                fix['tip']['values'], VALUES_MAP
+            )
+        if 'ai' in fix['tip']:
+            data['tip']['ai'] = map_insight_tip_section(
+                fix['tip']['ai'], AI_MAP
+            )
+        if 'tech' in fix['tip']:
+            data['tip']['tech'] = fix['tip']['tech']
+        if 'soft' in fix['tip']:
+            data['tip']['soft'] = fix['tip']['soft']
     # 누락된 표준 키를 None/빈값으로 보장 (big5, riasec, values, ai)
     for k in ['E','A','C','N','O']:
         for field in ['big5', 'big5_norm', 'big5_delta']:
