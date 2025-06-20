@@ -119,38 +119,55 @@ def parse_metrics_txt(filepath):
             section = 'ai'
         elif line.startswith('Ⅴ. 비즈니스·소프트 스킬'):
             section = 'soft'
-        elif section and line.startswith('|') and '|' in line[1:]:
-            continue
         elif section and line.startswith('|'):
             parts = [p.strip() for p in line.strip('|').split('|')]
+            # Skip header-like rows containing only hyphens
+            if all(set(p) <= {'-'} for p in parts):
+                continue
             if section == 'big5' and len(parts) == 4:
                 k = extract_code_from_label(parts[0], BIG5_MAP)
                 if k:
-                    big5[k] = float(parts[1])
-                    big5_norm[k] = float(parts[2])
-                    big5_delta[k] = float(parts[3])
+                    try:
+                        big5[k] = float(parts[1])
+                        big5_norm[k] = float(parts[2])
+                        big5_delta[k] = float(parts[3])
+                    except ValueError:
+                        continue
             elif section == 'riasec' and len(parts) == 4:
                 k = extract_code_from_label(parts[0], RIASEC_MAP)
                 if k:
-                    riasec[k] = float(parts[1])
-                    riasec_norm[k] = float(parts[2])
-                    riasec_delta[k] = float(parts[3])
+                    try:
+                        riasec[k] = float(parts[1])
+                        riasec_norm[k] = float(parts[2])
+                        riasec_delta[k] = float(parts[3])
+                    except ValueError:
+                        continue
             elif section == 'values' and len(parts) == 4:
                 k = extract_code_from_label(parts[0], VALUES_MAP)
                 if k:
-                    values[k] = float(parts[1])
-                    values_norm[k] = float(parts[2])
-                    values_delta[k] = float(parts[3])
+                    try:
+                        values[k] = float(parts[1])
+                        values_norm[k] = float(parts[2])
+                        values_delta[k] = float(parts[3])
+                    except ValueError:
+                        continue
             elif section == 'ai' and len(parts) == 4:
                 k = extract_code_from_label(parts[0], AI_MAP)
                 if k:
-                    ai[k] = float(parts[1])
-                    ai_norm[k] = float(parts[2])
-                    ai_delta[k] = float(parts[3])
+                    try:
+                        ai[k] = float(parts[1])
+                        ai_norm[k] = float(parts[2])
+                        ai_delta[k] = float(parts[3])
+                    except ValueError:
+                        continue
             elif section == 'soft' and len(parts) == 2:
                 soft_name = parts[0].split('(')[0].strip()
-                soft[soft_name] = float(parts[1])
-                soft_scores.append({'name': soft_name, 'score': float(parts[1])})
+                try:
+                    score = float(parts[1])
+                except ValueError:
+                    continue
+                soft[soft_name] = score
+                soft_scores.append({'name': soft_name, 'score': score})
     result['big5'] = big5
     result['big5_norm'] = big5_norm
     result['big5_delta'] = big5_delta
@@ -243,6 +260,8 @@ def main():
         data['soft_scores'] = []
     if 'tech' not in data or not isinstance(data['tech'], list):
         data['tech'] = []
+    if isinstance(data.get('soft'), dict):
+        data['soft'] = [{'name': k, 'score': v} for k, v in data['soft'].items()]
     data = collapse_keys(data)
     data = round_floats(data, 1)
     os.makedirs(os.path.join(BASE_DIR, 'dist'), exist_ok=True)
@@ -282,9 +301,17 @@ def main():
     with open(chart_data_tmp, 'w', encoding='utf-8') as f:
         json.dump(data_for_js, f, ensure_ascii=False)
     node_script = os.path.join(BASE_DIR, 'charts', 'render_chartjs_images.js')
-    subprocess.run(['node', node_script, chart_data_tmp, chart_dir], check=True)
-    print(f"Chart images saved to {chart_dir}")
-    generate_chartjs_data(data, cfg['charts']['data'])
+    try:
+        subprocess.run(['node', node_script, chart_data_tmp, chart_dir], check=True)
+        print(f"Chart images saved to {chart_dir}")
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"Warning: chart rendering failed: {e}. Continuing without charts.")
+    data_for_chart = data.copy()
+    if isinstance(data_for_chart.get('soft'), dict):
+        data_for_chart['soft'] = [
+            {'name': k, 'score': v} for k, v in data_for_chart['soft'].items()
+        ]
+    generate_chartjs_data(data_for_chart, cfg['charts']['data'])
     cfg['charts']['images'] = {
         'big5': os.path.join(chart_dir, 'big5.png'),
         'riasec': os.path.join(chart_dir, 'riasec.png'),
