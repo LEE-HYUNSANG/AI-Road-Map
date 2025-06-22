@@ -53,7 +53,7 @@ AI_MAP = {
     'CB': 'CB', '협업 능력': 'CB', '협업 (CB)': 'CB', 'Collaborative Ability': 'CB',
     'ER': 'ER', '윤리적 책임': 'ER', '윤리 (ER)': 'ER', 'Ethical Responsibility': 'ER',
 }
-# tech/soft는 한글명 기준 그대로 사용
+# soft는 한글명 기준 그대로 사용
 
 def collapse_keys(obj):
     """Recursively strip Korean labels like '외향성 (E)' -> 'E'."""
@@ -230,8 +230,6 @@ def main():
             data['insight']['ai'] = map_insight_tip_section(
                 fix['insight']['ai'], AI_MAP
             )
-        if 'tech' in fix['insight']:
-            data['insight']['tech'] = fix['insight']['tech']
         if 'soft' in fix['insight']:
             data['insight']['soft'] = fix['insight']['soft']
 
@@ -250,8 +248,6 @@ def main():
             data['tip']['ai'] = map_insight_tip_section(
                 fix['tip']['ai'], AI_MAP
             )
-        if 'tech' in fix['tip']:
-            data['tip']['tech'] = fix['tip']['tech']
         if 'soft' in fix['tip']:
             data['tip']['soft'] = fix['tip']['soft']
     # 누락된 표준 키를 None/빈값으로 보장 (big5, riasec, values, ai)
@@ -279,11 +275,9 @@ def main():
                 data[field] = {}
             if k not in data[field]:
                 data[field][k] = None
-    # soft, tech 등 리스트도 빈 리스트로 보장
+    # soft 리스트도 빈 리스트로 보장
     if 'soft_scores' not in data or not isinstance(data['soft_scores'], list):
         data['soft_scores'] = []
-    if 'tech' not in data or not isinstance(data['tech'], list):
-        data['tech'] = []
     if isinstance(data.get('soft'), dict):
         data['soft'] = [{'name': k, 'score': v} for k, v in data['soft'].items()]
     data = collapse_keys(data)
@@ -305,15 +299,6 @@ def main():
     os.makedirs(chart_dir, exist_ok=True)
     chart_data_tmp = os.path.join(chart_dir, 'chartjs_input.json')
     data_for_js = data.copy()
-    if isinstance(data_for_js.get('tech'), dict):
-        data_for_js['tech'] = [
-            {"name": n, "score": s, "norm": norm}
-            for n, s, norm in zip(
-                data_for_js['tech'].get('labels', []),
-                data_for_js['tech'].get('scores', []),
-                data_for_js['tech'].get('norms', [])
-            )
-        ]
     if isinstance(data_for_js.get('soft'), dict):
         data_for_js['soft'] = [
             {"name": n, "score": s}
@@ -341,7 +326,6 @@ def main():
         'riasec': os.path.join(chart_dir, 'riasec.png'),
         'values': os.path.join(chart_dir, 'values.png'),
         'ai': os.path.join(chart_dir, 'ai.png'),
-        'tech': os.path.join(chart_dir, 'tech.png'),
         'soft': os.path.join(chart_dir, 'soft.png'),
     }
     html_path = render_html(data, cfg)

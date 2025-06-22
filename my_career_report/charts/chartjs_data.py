@@ -14,11 +14,6 @@ def generate_chartjs_data(data: Dict[str, Any], output_path: str) -> str:
         "values_norm": data.get("values_norm", {}),
         "ai": data.get("ai", {}),
         "ai_norm": data.get("ai_norm", {}),
-        "tech": {
-            "labels": [item["name"] for item in data.get("tech", [])],
-            "scores": [item["score"] for item in data.get("tech", [])],
-            "norms": [item.get("norm") for item in data.get("tech", [])],
-        },
         "soft": {
             "labels": [item["name"] for item in data.get("soft", [])],
             "scores": [item["score"] for item in data.get("soft", [])],

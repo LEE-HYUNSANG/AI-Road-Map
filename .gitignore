@@ -2,3 +2,5 @@ weasy_env/
 *.pyc
 __pycache__/
 my_career_report/weasy_env/
+my_career_report/dist/*.pdf
+my_career_report/*.pdf
