@@ -10,15 +10,19 @@
   <style>
     body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333; }
     h1, h2, h3, h4 { color: #2a5d84; }
-    .cover, .section { margin-bottom: 40px; }
-    .cover h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .cover { text-align:center; margin-bottom:40px; padding:60px 20px; background: linear-gradient(#f6f9fc,#fff); border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+    .section { margin-bottom: 40px; }
+    .cover h1 { font-size: 3em; margin-bottom: 20px; color:#1a365d; }
+    .cover-info { font-size: 1.2em; color:#4a5568; }
+    .cover-quote { margin-top:30px; font-style: italic; color:#555; border-left:4px solid #2a5d84; padding-left:16px; }
     .section h2 { font-size: 1.8em; border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-bottom: 20px; }
     h3 { font-size: 1.4em; margin-top: 20px; }
     h4 { font-size: 1.2em; margin-top: 15px; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
     th { background-color: #f5f5f5; }
-    .chart-container, .chart-placeholder { width: 100%; margin-bottom: 20px; }
+    .chart-container, .chart-placeholder { width: 100%; margin-bottom: 20px; text-align:center; }
+    .chart-canvas, .chart-img { display:block; margin:0 auto; }
     .chart-placeholder { height: 300px; background-color: #fafafa; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; }
     .action-plan ul { list-style-type: disc; margin-left: 20px; }
     .page-break { page-break-after: always; }
@@ -40,8 +44,9 @@
 </head>
 <body>
   <div class="cover">
-    <h1>진로 보고서</h1>
-    <p><strong>이름:</strong> 이현상 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>작성일:</strong> 2025-06-19</p>
+    <h1>AI 진로 진단 보고서</h1>
+    <p class="cover-info">이현상 | 2025-06-19</p>
+    <blockquote class="cover-quote">“당신의 결단력과 협업 정신은 혁신의 씨앗이 됩니다. 매 순간 도전하며 성장하세요!”</blockquote>
   </div>
   <div class="page-break"></div>
 
@@ -51,7 +56,7 @@
   <h3>BIG‐5 성향 그래프</h3>
   <div class="chart-container">
     <canvas id="big5Chart" class="chart-canvas" width="800" height="600"></canvas>
-    <img src="../charts/output/big5.png" class="chart-img" width="800" height="600" alt="BIG-5 chart"/>
+    <img src="../charts/output/big5.png" class="chart-img" width="600" height="400" alt="BIG-5 chart"/>
   </div>
 
   <section class="section result-section">
@@ -68,37 +73,37 @@
         
         <tr>
           <td>외향성</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>78.6</td>
+          <td>57.3</td>
+          <td>21.3</td>
         </tr>
         
         <tr>
           <td>친화성</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>85.7</td>
+          <td>70.5</td>
+          <td>15.2</td>
         </tr>
         
         <tr>
           <td>성실성</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>92.9</td>
+          <td>73.3</td>
+          <td>19.6</td>
         </tr>
         
         <tr>
           <td>신경성</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>85.7</td>
+          <td>63.8</td>
+          <td>21.9</td>
         </tr>
         
         <tr>
           <td>개방성</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>92.9</td>
+          <td>73.0</td>
+          <td>19.9</td>
         </tr>
         
       </tbody>
@@ -118,32 +123,32 @@
         
         <tr>
           <td>외향성</td>
-          <td></td>
-          <td></td>
+          <td>사람과 어울리고 활발하게 활동하는 성향<br>▲ 높다: 사교적이고 말이 많으며 에너지가 넘친다.<br>▼ 낮다: 조용하고 혼자 있는 걸 선호한다.</td>
+          <td>① 하루 1명과 짧은 대화를 시도한다.<br>② 주 1회 이상 모임이나 팀 활동에 참여한다.<br>③ 관심사 기반 커뮤니티나 동호회에 가입해 본다.</td>
         </tr>
         
         <tr>
           <td>친화성</td>
-          <td></td>
-          <td></td>
+          <td>타인을 배려하고 협조적인 태도를 갖는 성향<br>▲ 높다: 따뜻하고 공감하며 협력적이다.<br>▼ 낮다: 비판적이고 경쟁적이며 직설적이다.</td>
+          <td>① 먼저 감사나 칭찬의 말을 건네본다.<br>② 상대의 입장을 듣고 공감 표현을 시도한다.<br>③ 봉사 활동이나 멘토링 기회에 참여한다.</td>
         </tr>
         
         <tr>
           <td>성실성</td>
-          <td></td>
-          <td></td>
+          <td>계획적이고 책임감 있게 행동하는 성향<br>▲ 높다: 체계적이고 목표지향적이며 신중하다.<br>▼ 낮다: 충동적이고 계획에 덜 신경 쓴다.</td>
+          <td>① 매일 아침 할 일 3가지를 메모한다.<br>② 마감일을 미리 정하고 스스로 점검한다.<br>③ 루틴화 가능한 일정을 고정해 실천한다.</td>
         </tr>
         
         <tr>
           <td>신경성</td>
-          <td></td>
-          <td></td>
+          <td>스트레스에 침착하게 대응하는 성향<br>▲ 높다: 침착하고 감정을 잘 조절한다.<br>▼ 낮다: 불안하고 쉽게 스트레스를 받는다.</td>
+          <td>① 감정일기를 써서 스트레스를 언어화한다.<br>② 1일 10분 명상 또는 심호흡을 실천한다.<br>③ 상황을 문제·감정으로 나눠 정리해 본다.</td>
         </tr>
         
         <tr>
           <td>개방성</td>
-          <td></td>
-          <td></td>
+          <td>새로운 경험과 아이디어를 추구하는 성향<br>▲ 높다: 호기심 많고 창의적이며 다양성을 즐긴다.<br>▼ 낮다: 익숙함을 선호하고 변화에 소극적이다.</td>
+          <td>① 매주 1개씩 새로운 콘텐츠를 경험해 본다.<br>② 정기적으로 안 가본 장소나 행사에 가본다.<br>③ 고정관념을 깨는 질문을 스스로에게 던져본다.</td>
         </tr>
         
       </tbody>
@@ -270,44 +275,44 @@
         
         <tr>
           <td>현실형</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>64.0</td>
+          <td>45.5</td>
+          <td>18.5</td>
         </tr>
         
         <tr>
           <td>탐구형</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>88.0</td>
+          <td>57.8</td>
+          <td>30.2</td>
         </tr>
         
         <tr>
           <td>예술형</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>76.0</td>
+          <td>56.5</td>
+          <td>19.5</td>
         </tr>
         
         <tr>
           <td>사회형</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>58.5</td>
+          <td>41.5</td>
         </tr>
         
         <tr>
           <td>진취형</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>59.0</td>
+          <td>41.0</td>
         </tr>
         
         <tr>
           <td>관습형</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>96.0</td>
+          <td>53.0</td>
+          <td>43.0</td>
         </tr>
         
       </tbody>
@@ -465,7 +470,7 @@
   <!-- Ⅲ. 직업 가치관 분석 -->
   <h2>Ⅲ. 직업 가치관 분석</h2>
   <h3>직업 가치관 그래프</h3>
-  <canvas id="valuesChart" class="chart-canvas" width="600" height="400"></canvas>
+  <canvas id="valuesChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="../charts/output/values.png" class="chart-img" width="600" height="400" alt="Values chart"/>
   
 
@@ -479,38 +484,38 @@
         
         <tr>
           <td>능력발휘</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>72.5</td>
         </tr>
         
         <tr>
           <td>자율성</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>41.8</td>
         </tr>
         
         <tr>
           <td>보상</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>33.3</td>
         </tr>
         
         <tr>
           <td>안정성</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>46.1</td>
         </tr>
         
         <tr>
           <td>사회적 인정</td>
-          <td>-</td>
-          <td>-</td>
+          <td>86.7</td>
+          <td>56.0</td>
         </tr>
         
         <tr>
           <td>워라밸</td>
-          <td>-</td>
-          <td>-</td>
+          <td>80.0</td>
+          <td>44.5</td>
         </tr>
         
       </tbody>
@@ -668,7 +673,7 @@
   <!-- Ⅳ. AI 활용능력 분석 -->
   <h2>Ⅳ. AI 활용능력 분석</h2>
   <h3>AI 활용능력 그래프</h3>
-  <canvas id="aiChart" class="chart-canvas" width="600" height="400"></canvas>
+  <canvas id="aiChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="../charts/output/ai.png" class="chart-img" width="600" height="400" alt="AI chart"/>
   
 
@@ -682,51 +687,51 @@
         
         <tr>
           <td>AI 이해</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>79.3</td>
+          <td>20.7</td>
         </tr>
         
         <tr>
           <td>프롬프트</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>62.5</td>
+          <td>37.5</td>
         </tr>
         
         <tr>
           <td>검증</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>62.5</td>
+          <td>37.5</td>
         </tr>
         
         <tr>
           <td>도구 적용</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>62.5</td>
+          <td>37.5</td>
         </tr>
         
         <tr>
           <td>학습</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>54.0</td>
+          <td>46.0</td>
         </tr>
         
         <tr>
           <td>협업</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>100.0</td>
+          <td>62.5</td>
+          <td>37.5</td>
         </tr>
         
         <tr>
           <td>윤리</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <td>92.0</td>
+          <td>62.5</td>
+          <td>29.5</td>
         </tr>
         
       </tbody>
@@ -887,209 +892,170 @@
 
   <hr/>
 
-  <!-- Ⅴ. AI/기술 핵심 역량 분석 -->
-  <h2>Ⅴ. AI/기술 핵심 역량 분석</h2>
-  <h3>기술 역량 그래프</h3>
-  <canvas id="techChart" class="chart-canvas" width="600" height="400"></canvas>
-  <img src="../charts/output/tech.png" class="chart-img" width="600" height="400" alt="Tech chart"/>
-
-  <section class="section">
-    <h3>5-1. 검사 결과</h3>
-    <table class="tech-results">
-      <thead>
-        <tr><th>AI/기술 핵심 역량</th><th>이현상님의 점수</th></tr>
-      </thead>
-      <tbody>
-        
-        <tr>
-          <td>데이터 및 머신러닝</td>
-          <td>23.3</td>
-        </tr>
-        
-        <tr>
-          <td>소프트웨어 엔지니어링 및 자동화</td>
-          <td>20.0</td>
-        </tr>
-        
-        <tr>
-          <td>윤리 및 안전</td>
-          <td>13.3</td>
-        </tr>
-        
-        <tr>
-          <td>도메인별 기술</td>
-          <td>0.0</td>
-        </tr>
-        
-        <tr>
-          <td>디지털 창의성 및 UX</td>
-          <td>33.3</td>
-        </tr>
-        
-        <tr>
-          <td>연구 및 문서화</td>
-          <td>13.3</td>
-        </tr>
-        
-      </tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h3>5-2. 인사이트 & Quick Tip</h3>
-    <table class="tech-insight">
-      <thead>
-        <tr><th>AI/기술 핵심 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
-      </thead>
-      <tbody>
-        
-        <tr>
-          <td>데이터 및 머신러닝</td>
-          <td>데이터 전처리부터 모델 학습·튜닝까지 AI 개발의 핵심 기술을 다루는 역량입니다.<br>ML 도구(pandas, scikit-learn, PyTorch 등)를 실무에 적용할 수 있는 능력을 평가합니다.</td>
-          <td>① pandas·NumPy로 데이터 전처리 기초 학습<br>② scikit-learn으로 머신러닝 모델 실습<br>③ PyTorch 또는 OpenAI API로 실제 모델 제작·적용 경험 쌓기</td>
-        </tr>
-        
-        <tr>
-          <td>소프트웨어 엔지니어링 및 자동화</td>
-          <td>버전 관리, CI/CD, API 설계 등 개발·배포 환경을 구축하는 실전 개발 역량입니다.<br>반복 작업 자동화와 서비스 운영의 생산성 향상 능력을 포함합니다.</td>
-          <td>① Git·GitHub으로 버전 관리 기초 익히기<br>② GitHub Actions로 CI/CD 파이프라인 실습<br>③ REST API 설계 및 반복 작업 자동화 구현</td>
-        </tr>
-        
-        <tr>
-          <td>윤리 및 안전</td>
-          <td>AI의 편향, 개인정보, 저작권 등 윤리적 문제를 인식하고 관리하는 능력입니다.<br>모델카드, 공정성 지표, 시스템카드 등 문서화와 테스트 경험이 포함됩니다.</td>
-          <td>① AI 윤리 원칙과 편향 사례 학습<br>② 모델카드·시스템카드 작성 템플릿 실습<br>③ Red-teaming과 개인정보 대응 체크리스트 적용</td>
-        </tr>
-        
-        <tr>
-          <td>도메인별 기술</td>
-          <td>IoT, 금융, 헬스케어 등 특정 산업 분야에 AI를 적용하는 전문 기술 역량입니다.<br>센서 데이터 수집, 헬스 표준(FHIR), 리스크 모델링 등 도메인 기반 실습 경험을 포함합니다.</td>
-          <td>① 관심 도메인(헬스케어, 금융 등) 구조와 데이터 유형 조사<br>② 센서/시계열 데이터 수집 및 분석 실습<br>③ 산업별 문제 해결 중심 프로젝트 수행</td>
-        </tr>
-        
-        <tr>
-          <td>디지털 창의성 및 UX</td>
-          <td>디자인 도구나 생성형 AI를 활용해 사용자 친화적 경험을 기획·구현하는 능력입니다.<br>프로토타입 제작, A/B 테스트, 인터페이스 설계 등을 포함합니다.</td>
-          <td>① Figma·Canva로 인터페이스 구성 실습<br>② Stable Diffusion 등으로 이미지 생성 실험<br>③ A/B 테스트 또는 사용자 피드백 반영 UX 개선</td>
-        </tr>
-        
-        <tr>
-          <td>연구 및 문서화</td>
-          <td>기술 지식을 구조화하고 공유 가능한 형태로 정리하는 문서화 역량입니다.<br>API 문서, 실험 재현 기록, 마크다운 기반 기술 문서 작성 경험이 포함됩니다.</td>
-          <td>① Markdown으로 기술 문서 구성 연습<br>② API 명세서·재현 실험 보고서 작성 실습<br>③ 블로그·깃허브로 프로젝트 문서 공유 경험 축적</td>
-        </tr>
-        
-      </tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h3>5-3. Profile Tagline & 주요 역할</h3>
-    <p><strong>Tagline</strong>: 데이터 중심 자동화 혁신가</p>
-    <blockquote>데이터 처리와 자동화 영역에서 성장 잠재력을 지닌 인재</blockquote>
-    <ul>
-      
-      <li>🛠️ <strong>데이터 관리자</strong>: 대용량 데이터 정리·시각화 지원</li>
-      
-      <li>🛠️ <strong>자동화 엔지니어</strong>: 반복 작업 AI 자동화 솔루션 구현</li>
-      
-      <li>🛠️ <strong>UX 전략가</strong>: UX 프로토타입 제작으로 사용자 경험 개선</li>
-      
-      <li>🛠️ <strong>문서화 전문가</strong>: 프로젝트 문서와 코드 레퍼런스 체계화</li>
-      
-    </ul>
-  </section>
-
-  <section class="section">
-    <h3>5-4. 커리어 매칭 (핵심 역량 기반)</h3>
-    <table>
-      <thead>
-        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
-      </thead>
-      <tbody>
-        
-        <tr>
-          <td><strong>데이터 및 ML+디지털 창의성</strong></td>
-          <td>데이터 분석가</td>
-          <td>기초 역량+시각화 능력 결합으로 인사이트 전달에 적합</td>
-        </tr>
-        
-        <tr>
-          <td><strong>SW 엔지니어링+문서화</strong></td>
-          <td>자동화 엔지니어</td>
-          <td>스크립트 구현+문서화로 유지보수에 강점</td>
-        </tr>
-        
-        <tr>
-          <td><strong>윤리 및 안전+도메인별 기술</strong></td>
-          <td>Responsible AI 리드</td>
-          <td>윤리 기준+도메인 지식 결합해 안전 전략 제안</td>
-        </tr>
-        
-      </tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h3>5-5. 성장 포인트 3가지</h3>
-    <ol>  
-        
-      <li><strong>데이터 처리 심화</strong> — Kaggle 튜토리얼로 대용량 CSV 분석 경험 확대</li>  
-        
-      <li><strong>자동화 스크립트 연습</strong> — Python 스크립트로 반복 업무 자동화 및 CI/CD 구현</li>  
-        
-      <li><strong>UX 시각화 역량 확장</strong> — Figma/Adobe XD로 프로토타입 제작 및 사용자 테스트</li>  
-        
-    </ol>
-  </section>
-
-  <section class="section">
-    <h3>5-6. 리스크 관리 3가지</h3>
-    <ol>  
-        
-      <li><strong>기술 편중 위험</strong> — 특정 기술에만 몰두해 전체 그림 놓칠 수 있음</li>  
-        
-      <li><strong>도메인 지식 부족</strong> — 산업별 요구사항 이해 부재 위험</li>  
-        
-      <li><strong>문서화 미흡</strong> — 변경 이력 관리되지 않을 수 있음</li>  
-        
-    </ol>
-  </section>
-
-  <hr/>
-
-  <!-- Ⅵ. 비즈니스·소프트 스킬 분석 -->
-  <h2>Ⅵ. 비즈니스·소프트 스킬 분석</h2>
+  <!-- Ⅴ. 비즈니스·소프트 스킬 분석 -->
+  <h2>Ⅴ. 비즈니스·소프트 스킬 분석</h2>
   <h3>소프트 스킬 그래프</h3>
-  <canvas id="softChart" class="chart-canvas" width="600" height="400"></canvas>
+  <canvas id="softChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="../charts/output/soft.png" class="chart-img" width="600" height="400" alt="Soft skills chart"/>
 
   <section class="section">
-    <h3>6-1. 검사 결과</h3>
+    <h3>5-1. 검사 결과</h3>
     <table class="soft-results">
       <thead>  
         <tr><th>비즈니스 역량</th><th>이현상님의 점수</th></tr>
       </thead>  
       <tbody>  
           
-      </tbody>  
-    </table>
-  </section>
-
-  <section class="section">
-    <h3>6-2. 인사이트 & Quick Tip</h3>
-    <table class="soft-insight">  
-      <thead>  
-        <tr><th>비즈니스 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
-      </thead>  
-      <tbody>  
+        <tr>  
+          <td>분석적 사고</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>문제해결 능력</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>창의력</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>커뮤니케이션</td>
+          <td>80.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>협업역량</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>리더십</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>자기주도학습</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>적응력</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>회복력</td>
+          <td>93.3</td>
+        </tr>  
+          
+        <tr>  
+          <td>공감 능력</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>주도성</td>
+          <td>100.0</td>
+        </tr>  
+          
+        <tr>  
+          <td>디지털 역량</td>
+          <td>100.0</td>
+        </tr>  
           
       </tbody>  
     </table>
   </section>
 
   <section class="section">
-    <h3>6-3. Profile Tagline & 주요 역할</h3>
+    <h3>5-2. 인사이트 & Quick Tip</h3>
+    <table class="soft-insight">  
+      <thead>  
+        <tr><th>비즈니스 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
+      </thead>  
+      <tbody>  
+          
+        <tr>  
+          <td>분석적 사고</td>  
+          <td>정보를 논리적으로 정리하고 문제의 핵심을 도출하는 능력입니다.<br>사실과 데이터 기반의 구조화된 사고에 강점을 가집니다.</td>  
+          <td>역량 강화 팁: 정보를 논리적으로 정리하는 훈련을 해보세요. MECE나 피라미드 구조를 써보면 좋습니다.<br>추천 활동: 분석 보고서 작성, 기획서 구조화 연습</td>  
+        </tr>  
+          
+        <tr>  
+          <td>문제해결 능력</td>  
+          <td></td>  
+          <td></td>  
+        </tr>  
+          
+        <tr>  
+          <td>창의력</td>  
+          <td></td>  
+          <td></td>  
+        </tr>  
+          
+        <tr>  
+          <td>커뮤니케이션</td>  
+          <td>의미를 명확히 전달하고, 타인의 메시지를 수용하는 능력입니다.<br>설득, 갈등 해소, 팀워크에서 필수입니다.</td>  
+          <td>역량 강화 팁: 메시지를 명확히 하고 피드백을 반영하는 연습을 해보세요.<br>추천 활동: 발표 연습, 이메일 작성 첨삭</td>  
+        </tr>  
+          
+        <tr>  
+          <td>협업역량</td>  
+          <td></td>  
+          <td></td>  
+        </tr>  
+          
+        <tr>  
+          <td>리더십</td>  
+          <td>조직의 방향을 설정하고 팀을 이끄는 역량입니다.<br>결정력과 동기 부여가 주요 구성 요소입니다.</td>  
+          <td>역량 강화 팁: 소규모 프로젝트에서 리더 역할을 맡아보세요.<br>추천 활동: 모임 운영, 워크숍 진행 기획</td>  
+        </tr>  
+          
+        <tr>  
+          <td>자기주도학습</td>  
+          <td></td>  
+          <td></td>  
+        </tr>  
+          
+        <tr>  
+          <td>적응력</td>  
+          <td>새로운 환경과 변화에 유연하게 대응하는 능력입니다.<br>불확실한 상황에서도 빠르게 적응할 수 있어야 합니다.</td>  
+          <td>역량 강화 팁: 새로운 환경에 반복 노출되며 적응력을 길러보세요.<br>추천 활동: 멘토링 참여, 직무 체험 활동</td>  
+        </tr>  
+          
+        <tr>  
+          <td>회복력</td>  
+          <td>실패와 스트레스 이후 다시 도전할 수 있는 심리적 복원력입니다.<br>자기 성찰과 성장 지향성이 기반이 됩니다.</td>  
+          <td>역량 강화 팁: 실패 후 교훈을 기록하고 다시 도전해보세요.<br>추천 활동: 회고 일지 작성, 성장 일기 챌린지</td>  
+        </tr>  
+          
+        <tr>  
+          <td>공감 능력</td>  
+          <td></td>  
+          <td></td>  
+        </tr>  
+          
+        <tr>  
+          <td>주도성</td>  
+          <td>기회를 스스로 포착하고 실행까지 주도하는 능력입니다.<br>목표 설정과 추진력이 핵심입니다.</td>  
+          <td>역량 강화 팁: 아이디어를 실행까지 스스로 끌고 가는 경험을 쌓아보세요.<br>추천 활동: 프로젝트 제안서 작성, 공모전 참가</td>  
+        </tr>  
+          
+        <tr>  
+          <td>디지털 역량</td>  
+          <td>디지털 도구를 활용해 문제를 해결하고 업무를 효율화하는 능력입니다.<br>툴 활용, 정보 검증, 자동화 경험이 포함됩니다.</td>  
+          <td>역량 강화 팁: 디지털 툴을 집중적으로 익히고 실전에 활용해보세요.<br>추천 활동: 튜토리얼 학습, 자동화 실습 미션</td>  
+        </tr>  
+          
+      </tbody>  
+    </table>
+  </section>
+
+  <section class="section">
+    <h3>5-3. Profile Tagline & 주요 역할</h3>
     <p><strong>Tagline</strong>: 전천후 실행형 협업 리더</p>
     <blockquote>데이터 분석부터 실행까지 전 영역을 주도하는 리더</blockquote>
     <ul>
@@ -1106,7 +1072,7 @@
   </section>
 
   <section class="section">
-    <h3>6-4. 커리어 매칭 (비즈니스·소프트 스킬 기반)</h3>
+    <h3>5-4. 커리어 매칭 (비즈니스·소프트 스킬 기반)</h3>
     <table>
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -1136,7 +1102,7 @@
   </section>
 
   <section class="section">
-    <h3>6-5. 성장 포인트 3가지</h3>
+    <h3>5-5. 성장 포인트 3가지</h3>
     <ol>  
         
       <li><strong>전략적 네트워킹 강화</strong> — 밋업·컨퍼런스 참여 후 CRM 활용</li>  
@@ -1149,7 +1115,7 @@
   </section>
 
   <section class="section">
-    <h3>6-6. 리스크 관리 3가지</h3>
+    <h3>5-6. 리스크 관리 3가지</h3>
     <ol>  
         
       <li><strong>과도한 자신감</strong> — 지나친 자신감이 팀워크 해칠 수 있음</li>  
@@ -1163,16 +1129,16 @@
 
   <hr/>
 
-  <!-- Ⅶ. Recommendations & 제언 -->
-  <h2>Ⅶ. Recommendations & 제언</h2>
+  <!-- Ⅵ. Recommendations & 제언 -->
+  <h2>Ⅵ. Recommendations & 제언</h2>
 
   <section class="section">
-    <h3>💬 7-1. 맞춤형 명언</h3>
+    <h3>💬 6-1. 맞춤형 명언</h3>
     <blockquote>"당신의 결단력과 협업 정신은 혁신의 씨앗이 됩니다. 매 순간 도전하며 성장하세요!”</blockquote>
   </section>
 
   <section class="section">
-    <h3>🏅 7-2. 추천 직무 (Top 10)</h3>
+    <h3>🏅 6-2. 추천 직무 (Top 10)</h3>
     <table class="jobs-table">
       <thead>
         <tr><th>순위</th><th>추천 직무</th><th>추천 사유</th><th>팁</th></tr>
@@ -1254,7 +1220,7 @@
   </section>
 
   <section class="section">
-    <h3>🤖 7-3. AI 관련 신직무 추천 (Top 5)</h3>
+    <h3>🤖 6-3. AI 관련 신직무 추천 (Top 5)</h3>
     <table class="ai-jobs-table">
       <thead>
         <tr><th>순위</th><th>직무</th><th>사유</th><th>팁</th></tr>
@@ -1302,8 +1268,8 @@
 
   <hr/>
 
-  <!-- Ⅷ. 진로 로드맵 Career Roadmap -->
-  <h2>Ⅷ. 진로 로드맵 Career Roadmap</h2>
+  <!-- Ⅶ. 진로 로드맵 Career Roadmap -->
+  <h2>Ⅶ. 진로 로드맵 Career Roadmap</h2>
   <section class="section">
     <h3>🛣️ 단계별 로드맵</h3>
     <table>
@@ -1339,8 +1305,8 @@
 
   <hr/>
 
-  <!-- Ⅸ. 종합 결과: SWOT & 전략 -->
-  <h2>Ⅸ. 종합 결과: SWOT & 전략</h2>
+  <!-- Ⅷ. 종합 결과: SWOT & 전략 -->
+  <h2>Ⅷ. 종합 결과: SWOT & 전략</h2>
 
   <section class="section">
     <h3>9-1. SWOT 분석</h3>
@@ -1377,21 +1343,17 @@
   <!-- Chart data as JSON to avoid JS warnings -->
   <script id="report-data" type="application/json">
   {
-    "big5": {"A": null, "C": null, "E": null, "N": null, "O": null},
-    "big5_norm": {"A": null, "C": null, "E": null, "N": null, "O": null},
-    "riasec": {"A": null, "C": null, "E": null, "I": null, "R": null, "S": null},
-    "riasec_norm": {"A": null, "C": null, "E": null, "I": null, "R": null, "S": null},
-    "values": {"A": null, "I": null, "Rec": null, "Rel": null, "S": null, "W": null},
-    "values_norm": {"A": null, "I": null, "Rec": null, "Rel": null, "S": null, "W": null},
-    "ai": {"AO": null, "CB": null, "CE": null, "ER": null, "EU": null, "SE": null, "TS": null},
-    "ai_norm": {"AO": null, "CB": null, "CE": null, "ER": null, "EU": null, "SE": null, "TS": null},
-    "tech": {
-      "labels": ["\ub370\uc774\ud130 \ubc0f \uba38\uc2e0\ub7ec\ub2dd", "\uc18c\ud504\ud2b8\uc6e8\uc5b4 \uc5d4\uc9c0\ub2c8\uc5b4\ub9c1 \ubc0f \uc790\ub3d9\ud654", "\uc724\ub9ac \ubc0f \uc548\uc804", "\ub3c4\uba54\uc778\ubcc4 \uae30\uc220", "\ub514\uc9c0\ud138 \ucc3d\uc758\uc131 \ubc0f UX", "\uc5f0\uad6c \ubc0f \ubb38\uc11c\ud654"],
-      "scores": [23.3, 20.0, 13.3, 0.0, 33.3, 13.3]
-    },
+    "big5": {"A": 85.7, "C": 92.9, "E": 78.6, "N": 85.7, "O": 92.9},
+    "big5_norm": {"A": 70.5, "C": 73.3, "E": 57.3, "N": 63.8, "O": 73.0},
+    "riasec": {"A": 76.0, "C": 96.0, "E": 100.0, "I": 88.0, "R": 64.0, "S": 100.0},
+    "riasec_norm": {"A": 56.5, "C": 53.0, "E": 59.0, "I": 57.8, "R": 45.5, "S": 58.5},
+    "values": {"A": 100.0, "I": 100.0, "Rec": 100.0, "Rel": 100.0, "S": 86.7, "W": 80.0},
+    "values_norm": {"A": 72.5, "I": 41.8, "Rec": 33.3, "Rel": 46.1, "S": 56.0, "W": 44.5},
+    "ai": {"AO": 100.0, "CB": 100.0, "CE": 100.0, "ER": 92.0, "EU": 100.0, "SE": 100.0, "TS": 100.0},
+    "ai_norm": {"AO": 62.5, "CB": 62.5, "CE": 62.5, "ER": 62.5, "EU": 79.3, "SE": 54.0, "TS": 62.5},
     "soft": {
-      "labels": [],
-      "scores": []
+      "labels": ["\ubd84\uc11d\uc801 \uc0ac\uace0", "\ubb38\uc81c\ud574\uacb0 \ub2a5\ub825", "\ucc3d\uc758\ub825", "\ucee4\ubba4\ub2c8\ucf00\uc774\uc158", "\ud611\uc5c5\uc5ed\ub7c9", "\ub9ac\ub354\uc2ed", "\uc790\uae30\uc8fc\ub3c4\ud559\uc2b5", "\uc801\uc751\ub825", "\ud68c\ubcf5\ub825", "\uacf5\uac10 \ub2a5\ub825", "\uc8fc\ub3c4\uc131", "\ub514\uc9c0\ud138 \uc5ed\ub7c9"],
+      "scores": [100.0, 100.0, 100.0, 80.0, 100.0, 100.0, 100.0, 100.0, 93.3, 100.0, 100.0, 100.0]
     }
   }
   </script>
@@ -1478,19 +1440,7 @@
     }
   });
 
-    // Ⅴ. 기술 역량 차트
-  const techLabels = data.tech.labels;
-  const techScores = data.tech.scores;
-  new Chart(document.getElementById("techChart"), {
-    type: 'bar',
-    data: {
-      labels: techLabels,
-      datasets: [{ label: 'Score', data: techScores, backgroundColor: 'rgba(54, 162, 235, 0.6)', borderColor: 'rgb(54, 162, 235)', borderWidth: 1, borderRadius: 10 }]
-    },
-    options: { indexAxis: 'y', scales: { x: { beginAtZero: true, max:100 } } }
-  });
-
-    // Ⅵ. 소프트 스킬 차트
+    // Ⅴ. 소프트 스킬 차트
   const softLabels = data.soft.labels;
   const softScores = data.soft.scores;
   new Chart(document.getElementById("softChart"), {

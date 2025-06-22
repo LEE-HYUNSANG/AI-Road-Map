@@ -187,27 +187,6 @@ async function renderCharts(dataPath, outDir) {
     fs.writeFileSync(aiPath, buffer);
     console.log('AI chart saved to:', aiPath);
 
-    console.log('Rendering tech chart...');
-    const techLabels = data.tech.map(t => t.name);
-    const techScores = data.tech.map(t => t.score);
-    console.log('Tech labels:', techLabels);
-    console.log('Tech scores:', techScores);
-    
-    config = {
-      type: 'bar',
-      data: {
-        labels: techLabels,
-        datasets: [{ label: 'Score', data: techScores, backgroundColor: 'rgba(54, 162, 235, 0.6)', borderColor: 'rgb(54, 162, 235)', borderWidth: 1, borderRadius: 10 }]
-      },
-      options: { indexAxis: 'y', scales: { x: { beginAtZero: true, max: 100 } } }
-    };
-    console.log('Rendering tech to buffer...');
-    buffer = await canvas.renderToBuffer(config);
-    console.log('Tech buffer created, size:', buffer.length);
-    const techPath = path.join(outDir, 'tech.png');
-    fs.writeFileSync(techPath, buffer);
-    console.log('Tech chart saved to:', techPath);
-
     console.log('Rendering soft chart...');
     const softLabels = data.soft.map(t => t.name);
     const softScores = data.soft.map(t => t.score);

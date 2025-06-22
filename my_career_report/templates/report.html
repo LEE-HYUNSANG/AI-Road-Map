@@ -461,104 +461,14 @@
 
   <hr/>
 
-  <!-- Ⅴ. AI/기술 핵심 역량 분석 -->
-  <h2>Ⅴ. AI/기술 핵심 역량 분석</h2>
-  <h3>기술 역량 그래프</h3>
-  <canvas id="techChart" class="chart-canvas" width="800" height="600"></canvas>
-  <img src="{{ charts.images.tech }}" class="chart-img" width="600" height="400" alt="Tech chart"/>
-
-  <section class="section">
-    <h3>5-1. 검사 결과</h3>
-    <table class="tech-results">
-      <thead>
-        <tr><th>AI/기술 핵심 역량</th><th>{{ name }}님의 점수</th></tr>
-      </thead>
-      <tbody>
-        {% for item in tech %}
-        <tr>
-          <td>{{ item.name }}</td>
-          <td>{{ item.score|round(1) }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h3>5-2. 인사이트 & Quick Tip</h3>
-    <table class="tech-insight">
-      <thead>
-        <tr><th>AI/기술 핵심 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
-      </thead>
-      <tbody>
-        {% for item in tech %}
-        <tr>
-          <td>{{ item.name }}</td>
-          <td>{{ insight.tech[item.name] }}</td>
-          <td>{{ tip.tech[item.name] }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h3>5-3. Profile Tagline & 주요 역할</h3>
-    <p><strong>Tagline</strong>: {{ profile.tech.tagline }}</p>
-    <blockquote>{{ profile.tech.summary }}</blockquote>
-    <ul>
-      {% for r in role.tech %}
-      <li>🛠️ <strong>{{ r.name }}</strong>: {{ r.reason }}</li>
-      {% endfor %}
-    </ul>
-  </section>
-
-  <section class="section">
-    <h3>5-4. 커리어 매칭 (핵심 역량 기반)</h3>
-    <table>
-      <thead>
-        <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
-      </thead>
-      <tbody>
-        {% for c in career.tech %}
-        <tr>
-          <td><strong>{{ c.combo }}</strong></td>
-          <td>{{ c.job }}</td>
-          <td>{{ c.reason }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h3>5-5. 성장 포인트 3가지</h3>
-    <ol>  
-      {% for g in growth.tech %}  
-      <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>  
-      {% endfor %}  
-    </ol>
-  </section>
-
-  <section class="section">
-    <h3>5-6. 리스크 관리 3가지</h3>
-    <ol>  
-      {% for r in risk.tech %}  
-      <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>  
-      {% endfor %}  
-    </ol>
-  </section>
-
-  <hr/>
-
-  <!-- Ⅵ. 비즈니스·소프트 스킬 분석 -->
-  <h2>Ⅵ. 비즈니스·소프트 스킬 분석</h2>
+  <!-- Ⅴ. 비즈니스·소프트 스킬 분석 -->
+  <h2>Ⅴ. 비즈니스·소프트 스킬 분석</h2>
   <h3>소프트 스킬 그래프</h3>
   <canvas id="softChart" class="chart-canvas" width="800" height="600"></canvas>
   <img src="{{ charts.images.soft }}" class="chart-img" width="600" height="400" alt="Soft skills chart"/>
 
   <section class="section">
-    <h3>6-1. 검사 결과</h3>
+    <h3>5-1. 검사 결과</h3>
     <table class="soft-results">
       <thead>  
         <tr><th>비즈니스 역량</th><th>{{ name }}님의 점수</th></tr>
@@ -575,7 +485,7 @@
   </section>
 
   <section class="section">
-    <h3>6-2. 인사이트 & Quick Tip</h3>
+    <h3>5-2. 인사이트 & Quick Tip</h3>
     <table class="soft-insight">  
       <thead>  
         <tr><th>비즈니스 역량</th><th>한줄 인사이트</th><th>Quick Tip</th></tr>
@@ -593,7 +503,7 @@
   </section>
 
   <section class="section">
-    <h3>6-3. Profile Tagline & 주요 역할</h3>
+    <h3>5-3. Profile Tagline & 주요 역할</h3>
     <p><strong>Tagline</strong>: {{ profile.soft.tagline }}</p>
     <blockquote>{{ profile.soft.summary }}</blockquote>
     <ul>
@@ -604,7 +514,7 @@
   </section>
 
   <section class="section">
-    <h3>6-4. 커리어 매칭 (비즈니스·소프트 스킬 기반)</h3>
+    <h3>5-4. 커리어 매칭 (비즈니스·소프트 스킬 기반)</h3>
     <table>
       <thead>
         <tr><th>상위 특성 조합</th><th>추천 직무</th><th>추천 사유</th></tr>
@@ -622,7 +532,7 @@
   </section>
 
   <section class="section">
-    <h3>6-5. 성장 포인트 3가지</h3>
+    <h3>5-5. 성장 포인트 3가지</h3>
     <ol>  
       {% for g in growth.soft %}  
       <li><strong>{{ g.title }}</strong> — {{ g.desc }}</li>  
@@ -631,7 +541,7 @@
   </section>
 
   <section class="section">
-    <h3>6-6. 리스크 관리 3가지</h3>
+    <h3>5-6. 리스크 관리 3가지</h3>
     <ol>  
       {% for r in risk.soft %}  
       <li><strong>{{ r.title }}</strong> — {{ r.desc }}</li>  
@@ -641,16 +551,16 @@
 
   <hr/>
 
-  <!-- Ⅶ. Recommendations & 제언 -->
-  <h2>Ⅶ. Recommendations & 제언</h2>
+  <!-- Ⅵ. Recommendations & 제언 -->
+  <h2>Ⅵ. Recommendations & 제언</h2>
 
   <section class="section">
-    <h3>💬 7-1. 맞춤형 명언</h3>
+    <h3>💬 6-1. 맞춤형 명언</h3>
     <blockquote>"{{ quote }}”</blockquote>
   </section>
 
   <section class="section">
-    <h3>🏅 7-2. 추천 직무 (Top 10)</h3>
+    <h3>🏅 6-2. 추천 직무 (Top 10)</h3>
     <table class="jobs-table">
       <thead>
         <tr><th>순위</th><th>추천 직무</th><th>추천 사유</th><th>팁</th></tr>
@@ -669,7 +579,7 @@
   </section>
 
   <section class="section">
-    <h3>🤖 7-3. AI 관련 신직무 추천 (Top 5)</h3>
+    <h3>🤖 6-3. AI 관련 신직무 추천 (Top 5)</h3>
     <table class="ai-jobs-table">
       <thead>
         <tr><th>순위</th><th>직무</th><th>사유</th><th>팁</th></tr>
@@ -689,8 +599,8 @@
 
   <hr/>
 
-  <!-- Ⅷ. 진로 로드맵 Career Roadmap -->
-  <h2>Ⅷ. 진로 로드맵 Career Roadmap</h2>
+  <!-- Ⅶ. 진로 로드맵 Career Roadmap -->
+  <h2>Ⅶ. 진로 로드맵 Career Roadmap</h2>
   <section class="section">
     <h3>🛣️ 단계별 로드맵</h3>
     <table>
@@ -712,8 +622,8 @@
 
   <hr/>
 
-  <!-- Ⅸ. 종합 결과: SWOT & 전략 -->
-  <h2>Ⅸ. 종합 결과: SWOT & 전략</h2>
+  <!-- Ⅷ. 종합 결과: SWOT & 전략 -->
+  <h2>Ⅷ. 종합 결과: SWOT & 전략</h2>
 
   <section class="section">
     <h3>9-1. SWOT 분석</h3>
@@ -758,10 +668,6 @@
     "values_norm": {{ values_norm | tojson }},
     "ai": {{ ai | tojson }},
     "ai_norm": {{ ai_norm | tojson }},
-    "tech": {
-      "labels": {{ tech | map(attribute='name') | list | tojson }},
-      "scores": {{ tech | map(attribute='score') | list | tojson }}
-    },
     "soft": {
       "labels": {{ soft | map(attribute='name') | list | tojson }},
       "scores": {{ soft | map(attribute='score') | list | tojson }}
@@ -851,19 +757,7 @@
     }
   });
 
-    // Ⅴ. 기술 역량 차트
-  const techLabels = data.tech.labels;
-  const techScores = data.tech.scores;
-  new Chart(document.getElementById("techChart"), {
-    type: 'bar',
-    data: {
-      labels: techLabels,
-      datasets: [{ label: 'Score', data: techScores, backgroundColor: 'rgba(54, 162, 235, 0.6)', borderColor: 'rgb(54, 162, 235)', borderWidth: 1, borderRadius: 10 }]
-    },
-    options: { indexAxis: 'y', scales: { x: { beginAtZero: true, max:100 } } }
-  });
-
-    // Ⅵ. 소프트 스킬 차트
+    // Ⅴ. 소프트 스킬 차트
   const softLabels = data.soft.labels;
   const softScores = data.soft.scores;
   new Chart(document.getElementById("softChart"), {
